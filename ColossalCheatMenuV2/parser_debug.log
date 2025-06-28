@@ -1,4 +1,4 @@
-Parsing started: 06/26/2025 20:18:11
+Parsing started: 06/27/2025 22:31:07
 Processing menu: ColourSettings
 Parsing option: MenuColour, Type: sliderthingy
 Output sliderthingy: MenuColour,[Purple|Red|Yellow|Green|Blue]
@@ -298,8 +298,8 @@ Parsing option: TagAura, Type: sliderthingy
 Output sliderthingy: TagAura,[[OFF]|Really Close|Close|Legit|Semi Legit|Semi Blatant|Blatant|Rage]
 Parsing option: TagAll, Type: togglethingy
 Output togglethingy: TagAll,tagall
-Parsing option: Desync, Type: togglethingy
-Output togglethingy: Desync,desync
+Parsing option: Desync [DISABLED], Type: togglethingy
+Output togglethingy: Desync [DISABLED],desync
 Parsing option: HitBoxes, Type: sliderthingy
 Output sliderthingy: HitBoxes,[[OFF]|Really Close|Close|Legit|Semi Legit|Semi Blatant|Blatant|Rage]
 Parsing option: No Wind, Type: togglethingy
@@ -453,4 +453,4 @@ Output togglethingy: Show Boards,ShowBoards
 Parsing option: Back, Type: submenuthingy
 Output submenuthingy: Back,backthingy
 Output menu: Visual2
-Parsing completed: 06/26/2025 20:18:11
+Parsing completed: 06/27/2025 22:31:08

@@ -1,4 +1,4 @@
-﻿﻿using BepInEx;
+﻿using BepInEx;
 using Colossal.Menu;
 using HarmonyLib;
 using Photon.Pun;
@@ -9,6 +9,7 @@ using PlayFab.DataModels;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Colossal.Mods
@@ -17,14 +18,11 @@ namespace Colossal.Mods
     {
         private HashSet<string> requestedIds = new HashSet<string>();
         private Dictionary<string, string> tagValues = new Dictionary<string, string>();
+        private Dictionary<VRRig, TextMeshPro> clonedTextComponents = new Dictionary<VRRig, TextMeshPro>();
 
         private Vector3 height;
         private Vector3 size;
         private Color colour;
-
-        private float distance;
-        private string colourcode;
-        private string fps;
 
         public void Update()
         {
@@ -87,49 +85,47 @@ namespace Colossal.Mods
                     {
                         if (!vrrig.isOfflineVRRig)
                         {
-                            AntiScreenShare.SetAntiScreenShareLayer(vrrig.playerText1.gameObject);
+                            TextMeshPro nameTagText = GetOrCreateClonedText(vrrig);
+
+                            AntiScreenShare.SetAntiScreenShareLayer(nameTagText.gameObject);
 
                             if (!vrrig.Creator.GetPlayerRef().CustomProperties.ContainsValue(ThisGuyIsUsingColossal.ccmprefix))
                             {
-                                if (vrrig.playerText1.color != colour)
+                                if (nameTagText.color != colour)
                                 {
-                                    vrrig.playerText1.color = colour;
+                                    nameTagText.color = colour;
                                 }
                             }
 
-                            if (vrrig.playerText2.enabled)
-                                vrrig.playerText2.enabled = false;
-
-                            if (vrrig.playerText1.transform.localPosition != height)
-                                vrrig.playerText1.transform.localPosition = height;
+                            if (nameTagText.transform.localPosition != height)
+                                nameTagText.transform.localPosition = height;
 
                             if (PluginConfig.nametagheight == 1)
                             {
                                 Quaternion rotation = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up);
-                                vrrig.playerText1.transform.rotation = rotation;
+                                nameTagText.transform.rotation = rotation;
 
                                 Vector3 scale = size * Vector3.Distance(Camera.main.transform.position, vrrig.transform.position) / 10;
-                                vrrig.playerText1.transform.localScale = new Vector3(Mathf.Max(scale.x, 4), Mathf.Max(scale.y, 4), Mathf.Max(scale.z, 4));
+                                nameTagText.transform.localScale = new Vector3(Mathf.Max(scale.x, 4), Mathf.Max(scale.y, 4), Mathf.Max(scale.z, 4));
                             }
                             else
                             {
-                                vrrig.playerText1.transform.rotation = vrrig.transform.rotation;
-                                vrrig.playerText1.transform.localScale = size;
+                                nameTagText.transform.rotation = vrrig.transform.rotation;
+                                nameTagText.transform.localScale = size;
                             }
 
                             if (PluginConfig.AlwaysVisible)
                             {
-                                if (vrrig.playerText1.font.material.shader != Shader.Find("GUI/Text Shader"))
-                                    vrrig.playerText1.font.material.shader = Shader.Find("GUI/Text Shader");
+                                if (nameTagText.font.material.shader != Shader.Find("GUI/Text Shader"))
+                                    nameTagText.font.material.shader = Shader.Find("GUI/Text Shader");
                             }
-                            else if (vrrig.playerText1.font.material.shader == Shader.Find("GUI/Text Shader"))
-                                vrrig.playerText1.font.material.shader = Shader.Find("TextMeshPro/Distance Field");
+                            else if (nameTagText.font.material.shader == Shader.Find("GUI/Text Shader"))
+                                nameTagText.font.material.shader = Shader.Find("TextMeshPro/Distance Field");
 
-                            // Update all tags
-                            UpdateCreationDateTag(vrrig);
-                            UpdateTag(vrrig, "Colour", PluginConfig.ShowColourCode, () => $"{vrrig.playerColor.r * 9} {vrrig.playerColor.g * 9} {vrrig.playerColor.b * 9}");
-                            UpdateDistanceTag(vrrig); // Special handling for Distance
-                            UpdateFPSTag(vrrig);
+                            UpdateCreationDateTag(vrrig, nameTagText);
+                            UpdateTag(vrrig, nameTagText, "Colour", PluginConfig.ShowColourCode, () => $"{vrrig.playerColor.r * 9} {vrrig.playerColor.g * 9} {vrrig.playerColor.b * 9}");
+                            UpdateDistanceTag(vrrig, nameTagText);
+                            UpdateFPSTag(vrrig, nameTagText);
                         }
                     }
                 }
@@ -144,33 +140,62 @@ namespace Colossal.Mods
                         {
                             requestedIds.Remove(vrrig.Creator.UserId);
 
-                            vrrig.playerText1.transform.localPosition = new Vector3(25.30f, 25.00f, 0f);
-                            vrrig.playerText1.transform.localScale = new Vector3(1, 1, 1);
-                            vrrig.playerText1.transform.rotation = vrrig.transform.rotation;
+                            if (clonedTextComponents.ContainsKey(vrrig))
+                            {
+                                if (clonedTextComponents[vrrig].font.material.shader == Shader.Find("GUI/Text Shader"))
+                                    clonedTextComponents[vrrig].font.material.shader = Shader.Find("TextMeshPro/Distance Field");
 
-                            if (!vrrig.playerText2.enabled)
-                                vrrig.playerText2.enabled = true;
+                                Destroy(clonedTextComponents[vrrig].gameObject);
+                                clonedTextComponents.Remove(vrrig);
+                            }
                         }
                     }
                 }
 
-                Destroy(this.GetComponent<NameTags>());
+                Destroy(this);
             }
         }
 
-        private void UpdateFPSTag(VRRig vrrig)
+        private TextMeshPro GetOrCreateClonedText(VRRig vrrig)
+        {
+            if (clonedTextComponents.TryGetValue(vrrig, out TextMeshPro existingText))
+            {
+                return existingText;
+            }
+
+            // Clone playerText1
+            GameObject clonedText1Object = Instantiate(vrrig.playerText1.gameObject);
+            clonedText1Object.name = "ClonedNameTag1";
+            clonedText1Object.transform.SetParent(vrrig.playerText1.transform.parent, false);
+            TextMeshPro clonedText1 = clonedText1Object.GetComponent<TextMeshPro>();
+
+            // Increase width of cloned playerText1
+            RectTransform rectTransform = clonedText1.GetComponent<RectTransform>();
+            if (rectTransform != null)
+            {
+                rectTransform.sizeDelta = new Vector2(vrrig.playerText1.GetComponent<RectTransform>().sizeDelta.x * 3f, rectTransform.sizeDelta.y);
+                clonedText1.autoSizeTextContainer = false;
+            }
+
+            clonedTextComponents[vrrig] = clonedText1;
+
+            return clonedText1;
+        }
+
+        private void UpdateFPSTag(VRRig vrrig, TextMeshPro nameTagText)
         {
             if (PluginConfig.ShowFPS)
             {
                 string fps = Traverse.Create(vrrig).Field("fps").GetValue().ToString();
-                AddOrUpdateLine(vrrig, "FPS", fps);
+                AddOrUpdateLine(vrrig, nameTagText, "FPS", fps);
             }
             else
             {
-                RemoveLine(vrrig, "FPS");
+                RemoveLine(vrrig, nameTagText, "FPS");
             }
         }
-        private async void UpdateCreationDateTag(VRRig vrrig)
+
+        private async void UpdateCreationDateTag(VRRig vrrig, TextMeshPro nameTagText)
         {
             if (PluginConfig.ShowCreationDate)
             {
@@ -178,30 +203,32 @@ namespace Colossal.Mods
                 {
                     requestedIds.Add(vrrig.Creator.UserId);
                     string creationDate = await CreationDate.GetCreationDateAsync(vrrig);
-                    AddOrUpdateLine(vrrig, "Creation", creationDate);
+                    AddOrUpdateLine(vrrig, nameTagText, "Creation", creationDate);
                 }
             }
             else
             {
                 requestedIds.Remove(vrrig.Creator.UserId);
-                RemoveLine(vrrig, "Creation");
+                RemoveLine(vrrig, nameTagText, "Creation");
             }
         }
-        private void UpdateDistanceTag(VRRig vrrig)
+
+        private void UpdateDistanceTag(VRRig vrrig, TextMeshPro nameTagText)
         {
             if (PluginConfig.ShowDistance)
             {
                 string distanceValue = $"[{(int)Vector3.Distance(vrrig.transform.position, Camera.main.transform.position)}M]";
-                AddOrUpdateDistanceLine(vrrig, distanceValue);
+                AddOrUpdateDistanceLine(vrrig, nameTagText, distanceValue);
             }
             else
             {
-                RemoveDistanceLine(vrrig);
+                RemoveDistanceLine(vrrig, nameTagText);
             }
         }
-        private void AddOrUpdateDistanceLine(VRRig vrrig, string value)
+
+        private void AddOrUpdateDistanceLine(VRRig vrrig, TextMeshPro nameTagText, string value)
         {
-            string[] lines = vrrig.playerText1.text.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] lines = nameTagText.text.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             List<string> newLines = new List<string>();
             bool distanceFound = false;
 
@@ -223,11 +250,12 @@ namespace Colossal.Mods
                 newLines.Add(value);
             }
 
-            vrrig.playerText1.text = string.Join("\n", newLines);
+            nameTagText.text = string.Join("\n", newLines);
         }
-        private void RemoveDistanceLine(VRRig vrrig)
+
+        private void RemoveDistanceLine(VRRig vrrig, TextMeshPro nameTagText)
         {
-            string[] lines = vrrig.playerText1.text.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] lines = nameTagText.text.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             List<string> newLines = new List<string>();
 
             foreach (string line in lines)
@@ -238,24 +266,24 @@ namespace Colossal.Mods
                 }
             }
 
-            vrrig.playerText1.text = string.Join("\n", newLines);
+            nameTagText.text = string.Join("\n", newLines);
         }
 
-
-        private void UpdateTag(VRRig vrrig, string tagName, bool shouldShow, Func<string> getValue)
+        private void UpdateTag(VRRig vrrig, TextMeshPro nameTagText, string tagName, bool shouldShow, Func<string> getValue)
         {
             if (shouldShow)
             {
-                AddOrUpdateLine(vrrig, tagName, getValue());
+                AddOrUpdateLine(vrrig, nameTagText, tagName, getValue());
             }
             else
             {
-                RemoveLine(vrrig, tagName);
+                RemoveLine(vrrig, nameTagText, tagName);
             }
         }
-        private void AddOrUpdateLine(VRRig vrrig, string tagName, string value)
+
+        private void AddOrUpdateLine(VRRig vrrig, TextMeshPro nameTagText, string tagName, string value)
         {
-            string[] lines = vrrig.playerText1.text.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] lines = nameTagText.text.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             List<string> newLines = new List<string>();
             bool tagFound = false;
 
@@ -277,11 +305,12 @@ namespace Colossal.Mods
                 newLines.Add($"{tagName}: {value}");
             }
 
-            vrrig.playerText1.text = string.Join("\n", newLines);
+            nameTagText.text = string.Join("\n", newLines);
         }
-        private void RemoveLine(VRRig vrrig, string tagName)
+
+        private void RemoveLine(VRRig vrrig, TextMeshPro nameTagText, string tagName)
         {
-            string[] lines = vrrig.playerText1.text.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] lines = nameTagText.text.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
             List<string> newLines = new List<string>();
 
             foreach (string line in lines)
@@ -292,7 +321,19 @@ namespace Colossal.Mods
                 }
             }
 
-            vrrig.playerText1.text = string.Join("\n", newLines);
+            nameTagText.text = string.Join("\n", newLines);
+        }
+
+        private void OnDestroy()
+        {
+            foreach (var pair in clonedTextComponents)
+            {
+                if (pair.Value != null)
+                {
+                    Destroy(pair.Value.gameObject);
+                }
+            }
+            clonedTextComponents.Clear();
         }
     }
 }

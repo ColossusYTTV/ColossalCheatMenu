@@ -122,7 +122,7 @@ namespace Colossal.Patches
 
             string jsonContent = JsonConvert.SerializeObject(embed);
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await client.PostAsync(KeyAuthApp.var("4hqtPqR37n5WnFN2e6UaW4hqtPqR37n5WnFN2e6Uae4hqtPqR37n5WnFN2e6Uab4hqtPqR37n5WnFN2e6Uah4hqtPqR37n5WnFN2e6Uao4hqtPqR37n5WnFN2e6Uao4hqtPqR37n5WnFN2e6Uak4hqtPqR37n5WnFN2e6Ua".Replace("4hqtPqR37n5WnFN2e6Ua", "")), content);
+            HttpResponseMessage response = await client.PostAsync(OnGameInit.joinwebhook, content);
 
             CustomConsole.Debug("Sent tracker info.");
         }

@@ -10,7 +10,7 @@ using PlayFab;
 
 namespace Colossal.Patches
 {
-    [HarmonyPatch(typeof(GorillaServer), "CheckForBadName")]
+    //[HarmonyPatch(typeof(GorillaServer), "CheckForBadName")]
     public static class CheckForBadName
     {
         static bool Prefix()

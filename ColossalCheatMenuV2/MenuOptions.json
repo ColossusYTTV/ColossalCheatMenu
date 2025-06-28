@@ -106,7 +106,7 @@
       { "DisplayName": "InvisMonkey", "Type": "togglethingy", "AssociatedBool": "invismonkey" },
       { "DisplayName": "TagAura", "Type": "sliderthingy", "StringArray": ["[OFF]", "Really Close", "Close", "Legit", "Semi Legit", "Semi Blatant", "Blatant", "Rage"] },
       { "DisplayName": "TagAll", "Type": "togglethingy", "AssociatedBool": "tagall" },
-      { "DisplayName": "Desync", "Type": "togglethingy", "AssociatedBool": "desync" },
+      { "DisplayName": "Desync [DISABLED]", "Type": "togglethingy", "AssociatedBool": "desync" },
       { "DisplayName": "HitBoxes", "Type": "sliderthingy", "StringArray": ["[OFF]", "Really Close", "Close", "Legit", "Semi Legit", "Semi Blatant", "Blatant", "Rage"] },
       { "DisplayName": "No Wind", "Type": "togglethingy", "AssociatedBool": "nowind" },
       { "DisplayName": "Anti Grab", "Type": "togglethingy", "AssociatedBool": "antigrab" },

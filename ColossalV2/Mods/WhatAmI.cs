@@ -12,14 +12,18 @@ namespace Colossal
     public class WhatAmI
     {
         public static GorillaTagManager infectionmanager = GameObject.Find("GT Systems/GameModeSystem/Gorilla Tag Manager").GetComponent<GorillaTagManager>();
+        public static GorillaTagManager competitivemanager = GameObject.Find("GT Systems/GameModeSystem/Gorilla Tag Competitive Manager").GetComponent<GorillaTagCompetitiveManager>();
         public static GorillaPaintbrawlManager paintballmanager = GameObject.Find("GT Systems/GameModeSystem/Gorilla Paintbrawl Manager").GetComponent<GorillaPaintbrawlManager>();
 
         public static bool oculus = false;
         public static bool IsInfected(NetPlayer player)
         {
+            RankedProgressionManager.Instance.SetEloScore(int.MaxValue);
+
+
             if (PhotonNetwork.InRoom && infectionmanager != null && player != null)
             {
-                if (infectionmanager.currentInfected.Contains(player))
+                if (infectionmanager.currentInfected.Contains(player) || competitivemanager.currentInfected.Contains(player))
                 {
                     return true;
                 }

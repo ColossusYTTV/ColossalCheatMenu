@@ -38,7 +38,7 @@ Music,sliderthingy,[new];Play Music,buttonthingy,playmusic;Stop Music,buttonthin
 NameTags,togglethingy,NameTags;Show Creation Date,togglethingy,ShowCreationDate;Show Colour Code,togglethingy,ShowColourCode;Show Distance,togglethingy,ShowDistance;Always Visible,togglethingy,AlwaysVisible;Show FPS,togglethingy,ShowFPS;NameTag Height,sliderthingy,[Chest|Above Head];NameTag Size,sliderthingy,[Chest Size|Small|Medium|Large];NameTag Colour,sliderthingy,[White|Yellow|Green|Blue|Red|Cyan|Black];Back,submenuthingy,backthingy
 
 ---PLAYER---
-NoFinger,togglethingy,nofinger;TagGun,togglethingy,taggun;CreeperMonkey,togglethingy,creepermonkey;GhostMonkey,togglethingy,ghostmonkey;InvisMonkey,togglethingy,invismonkey;TagAura,sliderthingy,[[OFF]|Really Close|Close|Legit|Semi Legit|Semi Blatant|Blatant|Rage];TagAll,togglethingy,tagall;Desync,togglethingy,desync;HitBoxes,sliderthingy,[[OFF]|Really Close|Close|Legit|Semi Legit|Semi Blatant|Blatant|Rage];No Wind,togglethingy,nowind;Anti Grab,togglethingy,antigrab;Name Changer,togglethingy,namechanger,[STUMP];Next,submenuthingy,Player2;Back,submenuthingy,backthingy
+NoFinger,togglethingy,nofinger;TagGun,togglethingy,taggun;CreeperMonkey,togglethingy,creepermonkey;GhostMonkey,togglethingy,ghostmonkey;InvisMonkey,togglethingy,invismonkey;TagAura,sliderthingy,[[OFF]|Really Close|Close|Legit|Semi Legit|Semi Blatant|Blatant|Rage];TagAll,togglethingy,tagall;Desync [DISABLED],togglethingy,desync;HitBoxes,sliderthingy,[[OFF]|Really Close|Close|Legit|Semi Legit|Semi Blatant|Blatant|Rage];No Wind,togglethingy,nowind;Anti Grab,togglethingy,antigrab;Name Changer,togglethingy,namechanger,[STUMP];Next,submenuthingy,Player2;Back,submenuthingy,backthingy
 
 ---PLAYER2---
 Decapitation,togglethingy,decapitation;Rainbow Monkey,togglethingy,rainbowmonkey,[STUMP];Bad Apple Monkey,togglethingy,badapplemonkey,[STUMP];Aimbot,sliderthingy,[[OFF]|Silent Aim|Slilent Aim (Preds)],[PAINTBRAWL];Anti Tag,togglethingy,antitag;Fake Lag,togglethingy,fakelag;Disable Ghost Doors,togglethingy,disableghostdoors;Coloured Braclet,sliderthingy,[[OFF]|Rainbow|Purple|Black|White|Red|Green|Blue|Yellow];Ghost Self,buttonthingy,ghostself,[GR];Ghost Revive Self,buttonthingy,ghostreviveself,[M] [GR];FPS Spoof,togglethingy,fpsspoof;Back,submenuthingy,backthingy
@@ -63,3 +63,4 @@ Chams,togglethingy,chams;BoxESP,togglethingy,boxesp;HollowBoxESP,togglethingy,ho
 
 ---VISUAL2---
 SplashMonkey,togglethingy,SplashMonkey;NoLeaves,togglethingy,NoLeaves;ComicTags [DISABLED],togglethingy,ComicTags;Anti Screen Share,sliderthingy,[[OFF]|VR View|PC View];CCM Sight,sliderthingy,[[OFF]|Self & Others|Others|Self];Show Boards,togglethingy,ShowBoards;Back,submenuthingy,backthingy
+

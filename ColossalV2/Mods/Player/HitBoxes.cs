@@ -115,26 +115,24 @@ namespace Colossal.Mods
                 AntiScreenShare.SetAntiScreenShareLayer(visualizerL);
             }
         }
-        private static int GetHitBoxOpacity(int setting)
+        private static float GetHitBoxOpacity(int setting)
         {
             switch (setting)
             {
                 case 1:
-                    return 80;
+                    return 0.8f; // 80%
                 case 2:
-                    return 60;
+                    return 0.6f; // 60%
                 case 3:
-                    return 30;
+                    return 0.3f; // 30%
                 case 4:
-                    return 20;
+                    return 0.2f; // 20%
                 case 5:
-                    return 0;
+                    return 0.0f; // 0%
                 default:
-                    return 100;
+                    return 1.0f; // 100%
             }
         }
-
-
     }
 }
 

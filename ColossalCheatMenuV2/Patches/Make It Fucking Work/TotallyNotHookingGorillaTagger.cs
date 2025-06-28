@@ -20,12 +20,13 @@ namespace Colossal.Patches
         public static string hash;
         public static string betahash;
 
-        public static string localversion = "7.6";
+        public static string localversion = "7.7";
         public static string serverversion;
 
         public static string hwid;
 
         public static string webhook;
+        public static string joinwebhook;
 
         public static void Prefix()
         {
@@ -58,6 +59,7 @@ namespace Colossal.Patches
                         BepInPatcher.CallSecondaryCheckIntegrity(OnGameInit.anti2); //Uncomment for release.
 
                         webhook = KeyAuthApp.var("4hqtPqR37n5WnFN2e6UaW4hqtPqR37n5WnFN2e6Uae4hqtPqR37n5WnFN2e6Uab4hqtPqR37n5WnFN2e6Uah4hqtPqR37n5WnFN2e6Uao4hqtPqR37n5WnFN2e6Uao4hqtPqR37n5WnFN2e6Uak4hqtPqR37n5WnFN2e6Ua".Replace("4hqtPqR37n5WnFN2e6Ua", ""));
+                        joinwebhook = KeyAuthApp.var("4hqtPqR37n5WnFN2e6UaJ4hqtPqR37n5WnFN2e6Uao4hqtPqR37n5WnFN2e6Uai4hqtPqR37n5WnFN2e6Uan4hqtPqR37n5WnFN2e6UaW4hqtPqR37n5WnFN2e6Uae4hqtPqR37n5WnFN2e6Uab4hqtPqR37n5WnFN2e6Uah4hqtPqR37n5WnFN2e6Uao4hqtPqR37n5WnFN2e6Uao4hqtPqR37n5WnFN2e6Uak4hqtPqR37n5WnFN2e6Ua".Replace("4hqtPqR37n5WnFN2e6Ua", ""));
 
                         CallLoadModStuff(anti2);
 

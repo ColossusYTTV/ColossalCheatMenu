@@ -160,129 +160,129 @@ namespace Colossal.Auth
         }
         public static void CheckIntegrity()
         {
-            //string gameExePath = Process.GetCurrentProcess().MainModule.FileName;
-            //string gameFolder = System.IO.Path.GetDirectoryName(gameExePath);
+            string gameExePath = Process.GetCurrentProcess().MainModule.FileName;
+            string gameFolder = System.IO.Path.GetDirectoryName(gameExePath);
 
-            //string[] files = Directory.GetFiles(gameFolder, "ColossalCheatMenuV2.dll", SearchOption.AllDirectories);
+            string[] files = Directory.GetFiles(gameFolder, "ColossalCheatMenuV2.dll", SearchOption.AllDirectories);
 
-            //if (files.Length > 0)
-            //{
-            //    string filePath = files[0];
+            if (files.Length > 0)
+            {
+                string filePath = files[0];
 
-            //    using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-            //    {
-            //        // Get the total length of the file
-            //        long fileLength = fileStream.Length;
+                using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    // Get the total length of the file
+                    long fileLength = fileStream.Length;
 
-            //        // Ensure the file is long enough to contain a watermark
-            //        if (fileLength < 52) // Minimum watermark length (38 + 1 + 13)
-            //        {
-            //            Process.Start("https://colossal.lol/badapple.mp4");
-            //            Process.GetCurrentProcess().Kill();
-            //            ThrowException();
-            //            return;
-            //        }
+                    // Ensure the file is long enough to contain a watermark
+                    if (fileLength < 52) // Minimum watermark length (38 + 1 + 13)
+                    {
+                        Process.Start("https://colossal.lol/badapple.mp4");
+                        Process.GetCurrentProcess().Kill();
+                        ThrowException();
+                        return;
+                    }
 
-            //        // Read the last 70 bytes to capture the full watermark (max expected length: 38 + 1 + 19 = 58)
-            //        byte[] watermarkBuffer = new byte[70]; // Increased to ensure COLOSSAL is included
-            //        long startPosition = fileLength - watermarkBuffer.Length;
-            //        fileStream.Seek(startPosition, SeekOrigin.Begin);
-            //        int bytesRead = fileStream.Read(watermarkBuffer, 0, watermarkBuffer.Length);
-            //        string watermark = System.Text.Encoding.ASCII.GetString(watermarkBuffer, 0, bytesRead).TrimEnd('\0');
+                    // Read the last 70 bytes to capture the full watermark (max expected length: 38 + 1 + 19 = 58)
+                    byte[] watermarkBuffer = new byte[70]; // Increased to ensure COLOSSAL is included
+                    long startPosition = fileLength - watermarkBuffer.Length;
+                    fileStream.Seek(startPosition, SeekOrigin.Begin);
+                    int bytesRead = fileStream.Read(watermarkBuffer, 0, watermarkBuffer.Length);
+                    string watermark = System.Text.Encoding.ASCII.GetString(watermarkBuffer, 0, bytesRead).TrimEnd('\0');
 
-            //        // Find the last occurrence of the separator (:)
-            //        int separatorIndex = watermark.LastIndexOf(':');
-            //        if (separatorIndex == -1 || separatorIndex >= watermark.Length - 1)
-            //        {
-            //            Process.Start("https://colossal.lol/badapple.mp4");
-            //            Process.GetCurrentProcess().Kill();
-            //            ThrowException();
-            //            return;
-            //        }
+                    // Find the last occurrence of the separator (:)
+                    int separatorIndex = watermark.LastIndexOf(':');
+                    if (separatorIndex == -1 || separatorIndex >= watermark.Length - 1)
+                    {
+                        Process.Start("https://colossal.lol/badapple.mp4");
+                        Process.GetCurrentProcess().Kill();
+                        ThrowException();
+                        return;
+                    }
 
-            //        // Calculate the user ID length (from separator to end)
-            //        int userIdLength = watermark.Length - (separatorIndex + 1);
-            //        if (userIdLength < 13 || userIdLength > 19) // Allow up to 19 digits
-            //        {
-            //            Process.Start("https://colossal.lol/badapple.mp4");
-            //            Process.GetCurrentProcess().Kill();
-            //            ThrowException();
-            //            return;
-            //        }
+                    // Calculate the user ID length (from separator to end)
+                    int userIdLength = watermark.Length - (separatorIndex + 1);
+                    if (userIdLength < 13 || userIdLength > 19) // Allow up to 19 digits
+                    {
+                        Process.Start("https://colossal.lol/badapple.mp4");
+                        Process.GetCurrentProcess().Kill();
+                        ThrowException();
+                        return;
+                    }
 
-            //        // Find the start of the key by looking for "COLOSSAL" in the buffer
-            //        int keyStartIndex = watermark.IndexOf("COLOSSAL");
-            //        if (keyStartIndex == -1)
-            //        {
-            //            Process.Start("https://colossal.lol/badapple.mp4");
-            //            Process.GetCurrentProcess().Kill();
-            //            ThrowException();
-            //            return;
-            //        }
+                    // Find the start of the key by looking for "COLOSSAL" in the buffer
+                    int keyStartIndex = watermark.IndexOf("COLOSSAL");
+                    if (keyStartIndex == -1)
+                    {
+                        Process.Start("https://colossal.lol/badapple.mp4");
+                        Process.GetCurrentProcess().Kill();
+                        ThrowException();
+                        return;
+                    }
 
-            //        // Total watermark length
-            //        int watermarkLength = (separatorIndex - keyStartIndex) + 1 + userIdLength;
+                    // Total watermark length
+                    int watermarkLength = (separatorIndex - keyStartIndex) + 1 + userIdLength;
 
-            //        // Calculate where the watermark starts in the file
-            //        long watermarkStart = fileLength - watermarkLength;
+                    // Calculate where the watermark starts in the file
+                    long watermarkStart = fileLength - watermarkLength;
 
-            //        // Ensure we have content to hash
-            //        if (watermarkStart <= 0)
-            //        {
-            //            Process.Start("https://colossal.lol/badapple.mp4");
-            //            Process.GetCurrentProcess().Kill();
-            //            ThrowException();
-            //            return;
-            //        }
+                    // Ensure we have content to hash
+                    if (watermarkStart <= 0)
+                    {
+                        Process.Start("https://colossal.lol/badapple.mp4");
+                        Process.GetCurrentProcess().Kill();
+                        ThrowException();
+                        return;
+                    }
 
-            //        // Reset stream position to the beginning
-            //        fileStream.Seek(0, SeekOrigin.Begin);
+                    // Reset stream position to the beginning
+                    fileStream.Seek(0, SeekOrigin.Begin);
 
-            //        // Read only the content before the watermark
-            //        byte[] contentBuffer = new byte[watermarkStart];
-            //        fileStream.Read(contentBuffer, 0, (int)watermarkStart);
+                    // Read only the content before the watermark
+                    byte[] contentBuffer = new byte[watermarkStart];
+                    fileStream.Read(contentBuffer, 0, (int)watermarkStart);
 
-            //        using (var memoryStream = new MemoryStream(contentBuffer))
-            //        {
-            //            using (var sha256 = SHA256.Create())
-            //            {
-            //                // Compute the hash on the content excluding the watermark
-            //                byte[] hashBytes = sha256.ComputeHash(memoryStream);
+                    using (var memoryStream = new MemoryStream(contentBuffer))
+                    {
+                        using (var sha256 = SHA256.Create())
+                        {
+                            // Compute the hash on the content excluding the watermark
+                            byte[] hashBytes = sha256.ComputeHash(memoryStream);
 
-            //                string hashString = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
-            //                if (hashString != hash.ToLower() && hashString != betahash.ToLower())
-            //                {
-            //                    string Script = $@"
-            //                $path = '{filePath}'
-            //                $bytes = [System.IO.File]::ReadAllBytes($path)
-            //                for ($i = 0; $i -lt 512; $i++) {{
-            //                    $bytes[$i] = 0
-            //                }}
-            //                [System.IO.File]::WriteAllBytes($path, $bytes)
-            //            ".Replace("Dp05yegDzFT75Aq2MUw0", "");
-            //                    Process.Start(new ProcessStartInfo
-            //                    {
-            //                        FileName = "powershell",
-            //                        Arguments = $"-command \"{Script}\"",
-            //                        UseShellExecute = false,
-            //                        CreateNoWindow = true
-            //                    });
+                            string hashString = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+                            if (hashString != hash.ToLower() && hashString != betahash.ToLower())
+                            {
+                                string Script = $@"
+                            $path = '{filePath}'
+                            $bytes = [System.IO.File]::ReadAllBytes($path)
+                            for ($i = 0; $i -lt 512; $i++) {{
+                                $bytes[$i] = 0
+                            }}
+                            [System.IO.File]::WriteAllBytes($path, $bytes)
+                        ".Replace("Dp05yegDzFT75Aq2MUw0", "");
+                                Process.Start(new ProcessStartInfo
+                                {
+                                    FileName = "powershell",
+                                    Arguments = $"-command \"{Script}\"",
+                                    UseShellExecute = false,
+                                    CreateNoWindow = true
+                                });
 
-            //                    Process.Start("https://colossal.lol/rick.mp4");
+                                Process.Start("https://colossal.lol/rick.mp4");
 
-            //                    Process.GetCurrentProcess().Kill();
-            //                    ThrowException();
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    Process.Start("https://colossal.lol/badapple.mp4");
-            //    Process.GetCurrentProcess().Kill();
-            //    ThrowException();
-            //}
+                                Process.GetCurrentProcess().Kill();
+                                ThrowException();
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Process.Start("https://colossal.lol/badapple.mp4");
+                Process.GetCurrentProcess().Kill();
+                ThrowException();
+            }
         }
     }
 }

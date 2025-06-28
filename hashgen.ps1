@@ -1,5 +1,5 @@
 # Define the path to your assembly file
-$filePath = "C:\Users\XM\Documents\GitHub\ColossalDev\ColossalCheatMenuV2\bin\Release\ColossalCheatMenuV2.dll"  # Change this to your actual file path
+$filePath = "C:\Users\XM\Documents\GitHub\ColossalCheatMenu\ColossalCheatMenuV2\bin\Release\ColossalCheatMenuV2.dll"  # Change this to your actual file path
 
 # Check if the file exists
 if (Test-Path $filePath) {
