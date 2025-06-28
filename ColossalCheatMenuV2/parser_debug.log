@@ -1,0 +1,456 @@
+Parsing started: 06/26/2025 20:18:11
+Processing menu: ColourSettings
+Parsing option: MenuColour, Type: sliderthingy
+Output sliderthingy: MenuColour,[Purple|Red|Yellow|Green|Blue]
+Parsing option: Ghost Colour, Type: sliderthingy
+Output sliderthingy: Ghost Colour,[Purple|Red|Yellow|Green|Blue]
+Parsing option: Beam Colour, Type: sliderthingy
+Output sliderthingy: Beam Colour,[Purple|Red|Yellow|Green|Blue]
+Parsing option: ESP Colour, Type: sliderthingy
+Output sliderthingy: ESP Colour,[Purple|Red|Yellow|Green|Blue]
+Parsing option: Ghost Opacity, Type: sliderthingy
+Output sliderthingy: Ghost Opacity,[100%|80%|60%|30%|20%|0%]
+Parsing option: HitBoxes Opacity, Type: sliderthingy
+Output sliderthingy: HitBoxes Opacity,[100%|80%|60%|30%|20%|0%]
+Parsing option: HitBoxes Colour, Type: sliderthingy
+Output sliderthingy: HitBoxes Colour,[Purple|Red|Yellow|Green|Blue]
+Parsing option: Platforms Colour, Type: sliderthingy
+Output sliderthingy: Platforms Colour,[Purple|Red|Yellow|Green|Blue]
+Parsing option: TargetIndicator Colour, Type: sliderthingy
+Output sliderthingy: TargetIndicator Colour,[Purple|Red|Yellow|Green|Blue]
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: ColourSettings
+Processing menu: Computer
+Parsing option: Disconnect, Type: buttonthingy
+Output buttonthingy: Disconnect,disconnect
+Parsing option: Join GTC, Type: buttonthingy
+Output buttonthingy: Join GTC,join GTC
+Parsing option: Join TTT, Type: buttonthingy
+Output buttonthingy: Join TTT,join TTT
+Parsing option: Join YTTV, Type: buttonthingy
+Output buttonthingy: Join YTTV,join YTTV
+Parsing option: Join MODS, Type: buttonthingy
+Output buttonthingy: Join MODS,join MODS
+Parsing option: Join MOD, Type: buttonthingy
+Output buttonthingy: Join MOD,join MOD
+Parsing option: Join:, Type: buttonthingy
+Output buttonthingy: Join:,join
+Appended extra: roomtojoin
+Parsing option: Join CCMV2 Only, Type: buttonthingy
+Output buttonthingy: Join CCMV2 Only,join CCMV2 Only
+Parsing option: Gamemodes, Type: submenuthingy
+Output submenuthingy: Gamemodes,Gamemodes
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Computer
+Processing menu: CosmeticsSpoofer
+Parsing option: Spaz All Cosmetics, Type: togglethingy
+Output togglethingy: Spaz All Cosmetics,spazallcosmetics
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: CosmeticsSpoofer
+Processing menu: Exploits
+Parsing option: Break NameTags, Type: togglethingy
+Output togglethingy: Break NameTags,breaknametags
+Parsing option: SS Platforms, Type: togglethingy
+Output togglethingy: SS Platforms,SSPlatforms
+Appended extra: [M] [BASEMENT]
+Parsing option: Cosmetics Spoofer, Type: submenuthingy
+Output submenuthingy: Cosmetics Spoofer,Cosmetics Spoofer
+Parsing option: Freeze All, Type: togglethingy
+Output togglethingy: Freeze All,freezeall
+Parsing option: Become Guardian, Type: buttonthingy
+Output buttonthingy: Become Guardian,Become Guardian
+Appended extra: [M]
+Parsing option: Always Guardian, Type: togglethingy
+Output togglethingy: Always Guardian,alwaysguardian
+Parsing option: Grab All, Type: togglethingy
+Output togglethingy: Grab All,graball
+Appended extra: [GUARDIAN]
+Parsing option: App Quit All, Type: togglethingy
+Output togglethingy: App Quit All,appquitall
+Appended extra: [GUARDIAN]
+Parsing option: Next, Type: submenuthingy
+Output submenuthingy: Next,Exploits2
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Exploits
+Processing menu: Exploits2
+Parsing option: Max Quest Score, Type: buttonthingy
+Output buttonthingy: Max Quest Score,Max Quest Score
+Parsing option: Lag All [DISABLED], Type: togglethingy
+Output togglethingy: Lag All [DISABLED],lagall
+Parsing option: Make Room Private, Type: buttonthingy
+Output buttonthingy: Make Room Private,Make Room Private
+Appended extra: [DISABLE KICK ALL]
+Parsing option: Make Room Public, Type: buttonthingy
+Output buttonthingy: Make Room Public,Make Room Public
+Appended extra: [KICK ALL]
+Parsing option: Lock Room, Type: buttonthingy
+Output buttonthingy: Lock Room,Lock Room
+Parsing option: BroadCast Room, Type: buttonthingy
+Output buttonthingy: BroadCast Room,BroadCast Room
+Parsing option: Perm Break Room, Type: buttonthingy
+Output buttonthingy: Perm Break Room,Perm Break Room
+Parsing option: Kick All, Type: togglethingy
+Output togglethingy: Kick All,kickall
+Appended extra: [GUARDIAN] OR [JOIN TRIGGER]
+Parsing option: Make Name KKK, Type: buttonthingy
+Output buttonthingy: Make Name KKK,Make Name KKK
+Parsing option: Particle Spam, Type: togglethingy
+Output togglethingy: Particle Spam,particlespam
+Appended extra: [M] [GR]
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Exploits2
+Processing menu: Gamemodes
+Parsing option: Modded Gamemode, Type: togglethingy
+Output togglethingy: Modded Gamemode,moddedgamemode
+Parsing option: Competitive Gamemode, Type: togglethingy
+Output togglethingy: Competitive Gamemode,competitivegamemode
+Parsing option: Infection, Type: buttonthingy
+Output buttonthingy: Infection,cgamemode Infection
+Parsing option: Casual, Type: buttonthingy
+Output buttonthingy: Casual,cgamemode Casual
+Parsing option: Hunt, Type: buttonthingy
+Output buttonthingy: Hunt,cgamemode Hunt
+Parsing option: PaintBrawl, Type: buttonthingy
+Output buttonthingy: PaintBrawl,cgamemode Paintbrawl
+Parsing option: Guardian, Type: buttonthingy
+Output buttonthingy: Guardian,cgamemode Guardian
+Parsing option: Ambush, Type: buttonthingy
+Output buttonthingy: Ambush,cgamemode Ambush
+Parsing option: Freeze Tag, Type: buttonthingy
+Output buttonthingy: Freeze Tag,cgamemode FreezeTag
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Gamemodes
+Processing menu: Info
+Parsing option: PlayerList, Type: buttonthingy
+Output buttonthingy: PlayerList,
+Parsing option: GTC Ranked Codes, Type: buttonthingy
+Output buttonthingy: GTC Ranked Codes,
+Parsing option: IIDK Menu Users, Type: buttonthingy
+Output buttonthingy: IIDK Menu Users,
+Parsing option: CCMV2 Menu Users, Type: buttonthingy
+Output buttonthingy: CCMV2 Menu Users,
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Info
+Processing menu: Macro
+Parsing option: Macro, Type: sliderthingy
+Output sliderthingy: Macro,[new]
+Parsing option: Load Macro, Type: buttonthingy
+Output buttonthingy: Load Macro,loadmacro
+Parsing option: Stop Macro, Type: buttonthingy
+Output buttonthingy: Stop Macro,stopmacro
+Parsing option: Record Macro, Type: togglethingy
+Output togglethingy: Record Macro,recordmacro
+Parsing option: Delete Macro, Type: buttonthingy
+Output buttonthingy: Delete Macro,deletemacro
+Parsing option: Auto Play Proximity, Type: togglethingy
+Output togglethingy: Auto Play Proximity,autoplayproximity
+Parsing option: Auto Play Distance, Type: sliderthingy
+Output sliderthingy: Auto Play Distance,[Really Close|Close|Legit|Semi Legit|Semi Blatant|Blatant|Rage]
+Parsing option: Macro Lerp Speed, Type: sliderthingy
+Output sliderthingy: Macro Lerp Speed,[0.1|0.2|0.3|0.4|0.5|0.6]
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Macro
+Processing menu: MainMenu
+Parsing option: Movement, Type: submenuthingy
+Output submenuthingy: Movement,Movement
+Parsing option: Visual, Type: submenuthingy
+Output submenuthingy: Visual,Visual
+Parsing option: Player, Type: submenuthingy
+Output submenuthingy: Player,Player
+Parsing option: Computer, Type: submenuthingy
+Output submenuthingy: Computer,Computer
+Parsing option: Exploits, Type: submenuthingy
+Output submenuthingy: Exploits,Exploits
+Parsing option: Safety, Type: submenuthingy
+Output submenuthingy: Safety,Safety
+Parsing option: MusicPlayer, Type: submenuthingy
+Output submenuthingy: MusicPlayer,MusicPlayer
+Parsing option: Settings, Type: submenuthingy
+Output submenuthingy: Settings,Settings
+Parsing option: Info, Type: submenuthingy
+Output submenuthingy: Info,Info
+Parsing option: Macro, Type: submenuthingy
+Output submenuthingy: Macro,Macro
+Appended extra: [COMING SOON]
+Parsing option: Notifications, Type: togglethingy
+Output togglethingy: Notifications,Notifications
+Parsing option: Overlay, Type: togglethingy
+Output togglethingy: Overlay,overlay
+Parsing option: Tool Tips, Type: togglethingy
+Output togglethingy: Tool Tips,tooltips
+Output menu: MainMenu
+Processing menu: Movement
+Parsing option: ExcelFly, Type: sliderthingy
+Output sliderthingy: ExcelFly,[[OFF]|Super Slow|Slow|Medium|Fast|Super Fast]
+Parsing option: TFly, Type: togglethingy
+Output togglethingy: TFly,tfly
+Parsing option: WallWalk, Type: sliderthingy
+Output sliderthingy: WallWalk,[[OFF]|6.8|7|7.5|7.8|8|8.5|8.8|9|9.5|9.8]
+Parsing option: Speed Options, Type: submenuthingy
+Output submenuthingy: Speed Options,Speed Options
+Parsing option: Platforms, Type: togglethingy
+Output togglethingy: Platforms,platforms
+Parsing option: UpsideDown Monkey, Type: togglethingy
+Output togglethingy: UpsideDown Monkey,upsidedownmonkey
+Parsing option: WateryAir, Type: togglethingy
+Output togglethingy: WateryAir,wateryair
+Parsing option: LongArms, Type: togglethingy
+Output togglethingy: LongArms,longarms
+Parsing option: SpinBot, Type: togglethingy
+Output togglethingy: SpinBot,SpinBot
+Parsing option: WASDFly, Type: sliderthingy
+Output sliderthingy: WASDFly,[[OFF]|5|7|10|13|16]
+Parsing option: Next, Type: submenuthingy
+Output submenuthingy: Next,Movement2
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Movement
+Processing menu: Movement2
+Parsing option: Timer, Type: sliderthingy
+Output sliderthingy: Timer,[[OFF]|1.03x|1.06x|1.09x|1.1x|1.13x|1.16x|1.19x|1.2x|1.23x|1.26|1.29|1.3x|2x|3x|4x|5x]
+Parsing option: FloatyMonkey, Type: sliderthingy
+Output sliderthingy: FloatyMonkey,[[OFF]|1.1|1.2|1.4|1.6|1.8|2|2.2|2.4|2.6|2.8|3|3.2|3.4|3.6|3.8|4|Anti Grav]
+Parsing option: Climbable Gorillas, Type: togglethingy
+Output togglethingy: Climbable Gorillas,ClimbableGorillas
+Parsing option: Near Pulse, Type: sliderthingy
+Output sliderthingy: Near Pulse,[[OFF]|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20]
+Parsing option: Near Pulse Distance, Type: sliderthingy
+Output sliderthingy: Near Pulse Distance,[[OFF]|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20]
+Parsing option: Player Scale, Type: togglethingy
+Output togglethingy: Player Scale,PlayerScale
+Parsing option: No Clip, Type: togglethingy
+Output togglethingy: No Clip,NoClip
+Parsing option: Force Tag Freeze, Type: togglethingy
+Output togglethingy: Force Tag Freeze,forcetagfreeze
+Parsing option: Teleport To Random, Type: buttonthingy
+Output buttonthingy: Teleport To Random,teleporttorandom
+Parsing option: HZ Hands, Type: sliderthingy
+Output sliderthingy: HZ Hands,[[OFF]|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20]
+Parsing option: Throw, Type: togglethingy
+Output togglethingy: Throw,Throw
+Parsing option: Strafe Options, Type: submenuthingy
+Output submenuthingy: Strafe Options,Strafe Options
+Parsing option: Joystick Fly, Type: togglethingy
+Output togglethingy: Joystick Fly,joystickfly
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Movement2
+Processing menu: MusicPlayer
+Parsing option: Music, Type: sliderthingy
+Output sliderthingy: Music,[new]
+Parsing option: Play Music, Type: buttonthingy
+Output buttonthingy: Play Music,playmusic
+Parsing option: Stop Music, Type: buttonthingy
+Output buttonthingy: Stop Music,stopmusic
+Parsing option: Shuffle Music, Type: buttonthingy
+Output buttonthingy: Shuffle Music,shufflemusic
+Parsing option: Loop Music, Type: togglethingy
+Output togglethingy: Loop Music,loopmusic
+Parsing option: Sound Board, Type: togglethingy
+Output togglethingy: Sound Board,soundboard
+Parsing option: Volume, Type: sliderthingy
+Output sliderthingy: Volume,[100%|90%|80%|70%|60%|50%|40%|30%|20%|10%]
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: MusicPlayer
+Processing menu: NameTags
+Parsing option: NameTags, Type: togglethingy
+Output togglethingy: NameTags,NameTags
+Parsing option: Show Creation Date, Type: togglethingy
+Output togglethingy: Show Creation Date,ShowCreationDate
+Parsing option: Show Colour Code, Type: togglethingy
+Output togglethingy: Show Colour Code,ShowColourCode
+Parsing option: Show Distance, Type: togglethingy
+Output togglethingy: Show Distance,ShowDistance
+Parsing option: Always Visible, Type: togglethingy
+Output togglethingy: Always Visible,AlwaysVisible
+Parsing option: Show FPS, Type: togglethingy
+Output togglethingy: Show FPS,ShowFPS
+Parsing option: NameTag Height, Type: sliderthingy
+Output sliderthingy: NameTag Height,[Chest|Above Head]
+Parsing option: NameTag Size, Type: sliderthingy
+Output sliderthingy: NameTag Size,[Chest Size|Small|Medium|Large]
+Parsing option: NameTag Colour, Type: sliderthingy
+Output sliderthingy: NameTag Colour,[White|Yellow|Green|Blue|Red|Cyan|Black]
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: NameTags
+Processing menu: Player
+Parsing option: NoFinger, Type: togglethingy
+Output togglethingy: NoFinger,nofinger
+Parsing option: TagGun, Type: togglethingy
+Output togglethingy: TagGun,taggun
+Parsing option: CreeperMonkey, Type: togglethingy
+Output togglethingy: CreeperMonkey,creepermonkey
+Parsing option: GhostMonkey, Type: togglethingy
+Output togglethingy: GhostMonkey,ghostmonkey
+Parsing option: InvisMonkey, Type: togglethingy
+Output togglethingy: InvisMonkey,invismonkey
+Parsing option: TagAura, Type: sliderthingy
+Output sliderthingy: TagAura,[[OFF]|Really Close|Close|Legit|Semi Legit|Semi Blatant|Blatant|Rage]
+Parsing option: TagAll, Type: togglethingy
+Output togglethingy: TagAll,tagall
+Parsing option: Desync, Type: togglethingy
+Output togglethingy: Desync,desync
+Parsing option: HitBoxes, Type: sliderthingy
+Output sliderthingy: HitBoxes,[[OFF]|Really Close|Close|Legit|Semi Legit|Semi Blatant|Blatant|Rage]
+Parsing option: No Wind, Type: togglethingy
+Output togglethingy: No Wind,nowind
+Parsing option: Anti Grab, Type: togglethingy
+Output togglethingy: Anti Grab,antigrab
+Parsing option: Name Changer, Type: togglethingy
+Output togglethingy: Name Changer,namechanger
+Appended extra: [STUMP]
+Parsing option: Next, Type: submenuthingy
+Output submenuthingy: Next,Player2
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Player
+Processing menu: Player2
+Parsing option: Decapitation, Type: togglethingy
+Output togglethingy: Decapitation,decapitation
+Parsing option: Rainbow Monkey, Type: togglethingy
+Output togglethingy: Rainbow Monkey,rainbowmonkey
+Appended extra: [STUMP]
+Parsing option: Bad Apple Monkey, Type: togglethingy
+Output togglethingy: Bad Apple Monkey,badapplemonkey
+Appended extra: [STUMP]
+Parsing option: Aimbot, Type: sliderthingy
+Output sliderthingy: Aimbot,[[OFF]|Silent Aim|Slilent Aim (Preds)]
+Appended extra: [PAINTBRAWL]
+Parsing option: Anti Tag, Type: togglethingy
+Output togglethingy: Anti Tag,antitag
+Parsing option: Fake Lag, Type: togglethingy
+Output togglethingy: Fake Lag,fakelag
+Parsing option: Disable Ghost Doors, Type: togglethingy
+Output togglethingy: Disable Ghost Doors,disableghostdoors
+Parsing option: Coloured Braclet, Type: sliderthingy
+Output sliderthingy: Coloured Braclet,[[OFF]|Rainbow|Purple|Black|White|Red|Green|Blue|Yellow]
+Parsing option: Ghost Self, Type: buttonthingy
+Output buttonthingy: Ghost Self,ghostself
+Appended extra: [GR]
+Parsing option: Ghost Revive Self, Type: buttonthingy
+Output buttonthingy: Ghost Revive Self,ghostreviveself
+Appended extra: [M] [GR]
+Parsing option: FPS Spoof, Type: togglethingy
+Output togglethingy: FPS Spoof,fpsspoof
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Player2
+Processing menu: Safety
+Parsing option: Panic, Type: togglethingy
+Output togglethingy: Panic,Panic
+Parsing option: AntiReport, Type: sliderthingy
+Output sliderthingy: AntiReport,[[OFF]|Disconnect|Reconnect|Join Random]
+Parsing option: RandomIdentity, Type: buttonthingy
+Output buttonthingy: RandomIdentity,randomidentity
+Parsing option: Pc Check Bypass, Type: togglethingy
+Output togglethingy: Pc Check Bypass,pccheckbypass
+Parsing option: Fake Quest Menu, Type: togglethingy
+Output togglethingy: Fake Quest Menu,fakequestmenu
+Parsing option: Fake Report Menu, Type: togglethingy
+Output togglethingy: Fake Report Menu,fakereportmenu
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Safety
+Processing menu: Settings
+Parsing option: Colour Settings, Type: submenuthingy
+Output submenuthingy: Colour Settings,ColourSettings
+Parsing option: MenuPosition, Type: sliderthingy
+Output sliderthingy: MenuPosition,[Top Left|Middle|Top Right]
+Parsing option: Config, Type: sliderthingy
+Output sliderthingy: Config,[new]
+Parsing option: Load Config, Type: buttonthingy
+Output buttonthingy: Load Config,loadconfig
+Parsing option: Save Config, Type: buttonthingy
+Output buttonthingy: Save Config,saveconfig
+Parsing option: Player Logging, Type: togglethingy
+Output togglethingy: Player Logging,PlayerLogging
+Parsing option: Inverted Controls, Type: togglethingy
+Output togglethingy: Inverted Controls,invertedControls
+Parsing option: Log Out, Type: buttonthingy
+Output buttonthingy: Log Out,logout
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Settings
+Processing menu: Speed
+Parsing option: Speed, Type: sliderthingy
+Output sliderthingy: Speed,[[OFF]|7|7.2|7.4|7.6|7.8|8|8.2|8.4|8.6]
+Parsing option: Speed Toggle, Type: sliderthingy
+Output sliderthingy: Speed Toggle,[[OFF]|7|7.2|7.4|7.6|7.8|8|8.2|8.4|8.6]
+Parsing option: Near Speed, Type: sliderthingy
+Output sliderthingy: Near Speed,[[OFF]|7|7.2|7.4|7.6|7.8|8|8.2|8.4|8.6]
+Parsing option: Near Speed Distance, Type: sliderthingy
+Output sliderthingy: Near Speed Distance,[[OFF]|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25]
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Speed
+Processing menu: Strafe
+Parsing option: Strafe, Type: sliderthingy
+Output sliderthingy: Strafe,[[OFF]|Look|Target|Target [TEAM]|L Joystick]
+Parsing option: Strafe Speed, Type: sliderthingy
+Output sliderthingy: Strafe Speed,[6|8|10|12|14|16|18|20]
+Parsing option: Strafe Jump Amount, Type: sliderthingy
+Output sliderthingy: Strafe Jump Amount,[1|2|3|4|5|6|7|8]
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Strafe
+Processing menu: Tracers
+Parsing option: Tracers, Type: sliderthingy
+Output sliderthingy: Tracers,[[OFF]|RHand|LHand|Head|Screen]
+Parsing option: Tracer Size, Type: sliderthingy
+Output sliderthingy: Tracer Size,[Extremely Small|Super Small|Small|Medium|Large|Giant|Huge]
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Tracers
+Processing menu: Visual
+Parsing option: Chams, Type: togglethingy
+Output togglethingy: Chams,chams
+Parsing option: BoxESP, Type: togglethingy
+Output togglethingy: BoxESP,boxesp
+Parsing option: HollowBoxESP, Type: togglethingy
+Output togglethingy: HollowBoxESP,hollowboxesp
+Parsing option: BoneESP, Type: togglethingy
+Output togglethingy: BoneESP,boneesp
+Parsing option: Tracers, Type: submenuthingy
+Output submenuthingy: Tracers,Tracers
+Parsing option: NameTags, Type: submenuthingy
+Output submenuthingy: NameTags,NameTags
+Parsing option: Proximity Alert, Type: togglethingy
+Output togglethingy: Proximity Alert,ProximityAlert
+Parsing option: Full Bright, Type: togglethingy
+Output togglethingy: Full Bright,fullbright
+Parsing option: Sky Colour, Type: sliderthingy
+Output sliderthingy: Sky Colour,[Default|Purple|Red|Cyan|Green|Black]
+Parsing option: WhyIsEveryoneLookingAtMe, Type: togglethingy
+Output togglethingy: WhyIsEveryoneLookingAtMe,whyiseveryonelookingatme
+Parsing option: Next, Type: submenuthingy
+Output submenuthingy: Next,Visual2
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Visual
+Processing menu: Visual2
+Parsing option: SplashMonkey, Type: togglethingy
+Output togglethingy: SplashMonkey,SplashMonkey
+Parsing option: NoLeaves, Type: togglethingy
+Output togglethingy: NoLeaves,NoLeaves
+Parsing option: ComicTags [DISABLED], Type: togglethingy
+Output togglethingy: ComicTags [DISABLED],ComicTags
+Parsing option: Anti Screen Share, Type: sliderthingy
+Output sliderthingy: Anti Screen Share,[[OFF]|VR View|PC View]
+Parsing option: CCM Sight, Type: sliderthingy
+Output sliderthingy: CCM Sight,[[OFF]|Self & Others|Others|Self]
+Parsing option: Show Boards, Type: togglethingy
+Output togglethingy: Show Boards,ShowBoards
+Parsing option: Back, Type: submenuthingy
+Output submenuthingy: Back,backthingy
+Output menu: Visual2
+Parsing completed: 06/26/2025 20:18:11

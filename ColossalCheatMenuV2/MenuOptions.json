@@ -1,0 +1,245 @@
+{
+  "Menus": {
+    "MainMenu": [
+      { "DisplayName": "Movement", "Type": "submenuthingy", "AssociatedString": "Movement" },
+      { "DisplayName": "Visual", "Type": "submenuthingy", "AssociatedString": "Visual" },
+      { "DisplayName": "Player", "Type": "submenuthingy", "AssociatedString": "Player" },
+      { "DisplayName": "Computer", "Type": "submenuthingy", "AssociatedString": "Computer" },
+      { "DisplayName": "Exploits", "Type": "submenuthingy", "AssociatedString": "Exploits" },
+      { "DisplayName": "Safety", "Type": "submenuthingy", "AssociatedString": "Safety" },
+      { "DisplayName": "MusicPlayer", "Type": "submenuthingy", "AssociatedString": "MusicPlayer" },
+      { "DisplayName": "Settings", "Type": "submenuthingy", "AssociatedString": "Settings" },
+      { "DisplayName": "Info", "Type": "submenuthingy", "AssociatedString": "Info" },
+      { "DisplayName": "Macro", "Type": "submenuthingy", "AssociatedString": "Macro", "Extra": "[COMING SOON]" },
+      { "DisplayName": "Notifications", "Type": "togglethingy", "AssociatedBool": "Notifications" },
+      { "DisplayName": "Overlay", "Type": "togglethingy", "AssociatedBool": "overlay" },
+      { "DisplayName": "Tool Tips", "Type": "togglethingy", "AssociatedBool": "tooltips" }
+    ],
+    "Movement": [
+      { "DisplayName": "ExcelFly", "Type": "sliderthingy", "StringArray": ["[OFF]", "Super Slow", "Slow", "Medium", "Fast", "Super Fast"] },
+      { "DisplayName": "TFly", "Type": "togglethingy", "AssociatedBool": "tfly" },
+      { "DisplayName": "WallWalk", "Type": "sliderthingy", "StringArray": ["[OFF]", "6.8", "7", "7.5", "7.8", "8", "8.5", "8.8", "9", "9.5", "9.8"] },
+      { "DisplayName": "Speed Options", "Type": "submenuthingy", "AssociatedString": "Speed Options" },
+      { "DisplayName": "Platforms", "Type": "togglethingy", "AssociatedBool": "platforms" },
+      { "DisplayName": "UpsideDown Monkey", "Type": "togglethingy", "AssociatedBool": "upsidedownmonkey" },
+      { "DisplayName": "WateryAir", "Type": "togglethingy", "AssociatedBool": "wateryair" },
+      { "DisplayName": "LongArms", "Type": "togglethingy", "AssociatedBool": "longarms" },
+      { "DisplayName": "SpinBot", "Type": "togglethingy", "AssociatedBool": "SpinBot" },
+      { "DisplayName": "WASDFly", "Type": "sliderthingy", "StringArray": ["[OFF]", "5", "7", "10", "13", "16"] },
+      { "DisplayName": "Next", "Type": "submenuthingy", "AssociatedString": "Movement2" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Movement2": [
+      { "DisplayName": "Timer", "Type": "sliderthingy", "StringArray": ["[OFF]", "1.03x", "1.06x", "1.09x", "1.1x", "1.13x", "1.16x", "1.19x", "1.2x", "1.23x", "1.26", "1.29", "1.3x", "2x", "3x", "4x", "5x"] },
+      { "DisplayName": "FloatyMonkey", "Type": "sliderthingy", "StringArray": ["[OFF]", "1.1", "1.2", "1.4", "1.6", "1.8", "2", "2.2", "2.4", "2.6", "2.8", "3", "3.2", "3.4", "3.6", "3.8", "4", "Anti Grav"] },
+      { "DisplayName": "Climbable Gorillas", "Type": "togglethingy", "AssociatedBool": "ClimbableGorillas" },
+      { "DisplayName": "Near Pulse", "Type": "sliderthingy", "StringArray": ["[OFF]", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"] },
+      { "DisplayName": "Near Pulse Distance", "Type": "sliderthingy", "StringArray": ["[OFF]", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"] },
+      { "DisplayName": "Player Scale", "Type": "togglethingy", "AssociatedBool": "PlayerScale" },
+      { "DisplayName": "No Clip", "Type": "togglethingy", "AssociatedBool": "NoClip" },
+      { "DisplayName": "Force Tag Freeze", "Type": "togglethingy", "AssociatedBool": "forcetagfreeze" },
+      { "DisplayName": "Teleport To Random", "Type": "buttonthingy", "AssociatedString": "teleporttorandom" },
+      { "DisplayName": "HZ Hands", "Type": "sliderthingy", "StringArray": ["[OFF]", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"] },
+      { "DisplayName": "Throw", "Type": "togglethingy", "AssociatedBool": "Throw" },
+      { "DisplayName": "Strafe Options", "Type": "submenuthingy", "AssociatedString": "Strafe Options" },
+      { "DisplayName": "Joystick Fly", "Type": "togglethingy", "AssociatedBool": "joystickfly" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Speed": [
+      { "DisplayName": "Speed", "Type": "sliderthingy", "StringArray": ["[OFF]", "7", "7.2", "7.4", "7.6", "7.8", "8", "8.2", "8.4", "8.6"] },
+      { "DisplayName": "Speed Toggle", "Type": "sliderthingy", "StringArray": ["[OFF]", "7", "7.2", "7.4", "7.6", "7.8", "8", "8.2", "8.4", "8.6"] },
+      { "DisplayName": "Near Speed", "Type": "sliderthingy", "StringArray": ["[OFF]", "7", "7.2", "7.4", "7.6", "7.8", "8", "8.2", "8.4", "8.6"] },
+      { "DisplayName": "Near Speed Distance", "Type": "sliderthingy", "StringArray": ["[OFF]", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25"] },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Strafe": [
+      { "DisplayName": "Strafe", "Type": "sliderthingy", "StringArray": ["[OFF]", "Look", "Target", "Target [TEAM]", "L Joystick"] },
+      { "DisplayName": "Strafe Speed", "Type": "sliderthingy", "StringArray": ["6", "8", "10", "12", "14", "16", "18", "20"] },
+      { "DisplayName": "Strafe Jump Amount", "Type": "sliderthingy", "StringArray": ["1", "2", "3", "4", "5", "6", "7", "8"] },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Visual": [
+      { "DisplayName": "Chams", "Type": "togglethingy", "AssociatedBool": "chams" },
+      { "DisplayName": "BoxESP", "Type": "togglethingy", "AssociatedBool": "boxesp" },
+      { "DisplayName": "HollowBoxESP", "Type": "togglethingy", "AssociatedBool": "hollowboxesp" },
+      { "DisplayName": "BoneESP", "Type": "togglethingy", "AssociatedBool": "boneesp" },
+      { "DisplayName": "Tracers", "Type": "submenuthingy", "AssociatedString": "Tracers" },
+      { "DisplayName": "NameTags", "Type": "submenuthingy", "AssociatedString": "NameTags" },
+      { "DisplayName": "Proximity Alert", "Type": "togglethingy", "AssociatedBool": "ProximityAlert" },
+      { "DisplayName": "Full Bright", "Type": "togglethingy", "AssociatedBool": "fullbright" },
+      { "DisplayName": "Sky Colour", "Type": "sliderthingy", "StringArray": ["Default", "Purple", "Red", "Cyan", "Green", "Black"] },
+      { "DisplayName": "WhyIsEveryoneLookingAtMe", "Type": "togglethingy", "AssociatedBool": "whyiseveryonelookingatme" },
+      { "DisplayName": "Next", "Type": "submenuthingy", "AssociatedString": "Visual2" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Visual2": [
+      { "DisplayName": "SplashMonkey", "Type": "togglethingy", "AssociatedBool": "SplashMonkey" },
+      { "DisplayName": "NoLeaves", "Type": "togglethingy", "AssociatedBool": "NoLeaves" },
+      { "DisplayName": "ComicTags [DISABLED]", "Type": "togglethingy", "AssociatedBool": "ComicTags" },
+      { "DisplayName": "Anti Screen Share", "Type": "sliderthingy", "StringArray": ["[OFF]", "VR View", "PC View"] },
+      { "DisplayName": "CCM Sight", "Type": "sliderthingy", "StringArray": ["[OFF]", "Self & Others", "Others", "Self"] },
+      { "DisplayName": "Show Boards", "Type": "togglethingy", "AssociatedBool": "ShowBoards" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Tracers": [
+      { "DisplayName": "Tracers", "Type": "sliderthingy", "StringArray": ["[OFF]", "RHand", "LHand", "Head", "Screen"] },
+      { "DisplayName": "Tracer Size", "Type": "sliderthingy", "StringArray": ["Extremely Small", "Super Small", "Small", "Medium", "Large", "Giant", "Huge"] },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "NameTags": [
+      { "DisplayName": "NameTags", "Type": "togglethingy", "AssociatedBool": "NameTags" },
+      { "DisplayName": "Show Creation Date", "Type": "togglethingy", "AssociatedBool": "ShowCreationDate" },
+      { "DisplayName": "Show Colour Code", "Type": "togglethingy", "AssociatedBool": "ShowColourCode" },
+      { "DisplayName": "Show Distance", "Type": "togglethingy", "AssociatedBool": "ShowDistance" },
+      { "DisplayName": "Always Visible", "Type": "togglethingy", "AssociatedBool": "AlwaysVisible" },
+      { "DisplayName": "Show FPS", "Type": "togglethingy", "AssociatedBool": "ShowFPS" },
+      { "DisplayName": "NameTag Height", "Type": "sliderthingy", "StringArray": ["Chest", "Above Head"] },
+      { "DisplayName": "NameTag Size", "Type": "sliderthingy", "StringArray": ["Chest Size", "Small", "Medium", "Large"] },
+      { "DisplayName": "NameTag Colour", "Type": "sliderthingy", "StringArray": ["White", "Yellow", "Green", "Blue", "Red", "Cyan", "Black"] },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Player": [
+      { "DisplayName": "NoFinger", "Type": "togglethingy", "AssociatedBool": "nofinger" },
+      { "DisplayName": "TagGun", "Type": "togglethingy", "AssociatedBool": "taggun" },
+      { "DisplayName": "CreeperMonkey", "Type": "togglethingy", "AssociatedBool": "creepermonkey" },
+      { "DisplayName": "GhostMonkey", "Type": "togglethingy", "AssociatedBool": "ghostmonkey" },
+      { "DisplayName": "InvisMonkey", "Type": "togglethingy", "AssociatedBool": "invismonkey" },
+      { "DisplayName": "TagAura", "Type": "sliderthingy", "StringArray": ["[OFF]", "Really Close", "Close", "Legit", "Semi Legit", "Semi Blatant", "Blatant", "Rage"] },
+      { "DisplayName": "TagAll", "Type": "togglethingy", "AssociatedBool": "tagall" },
+      { "DisplayName": "Desync", "Type": "togglethingy", "AssociatedBool": "desync" },
+      { "DisplayName": "HitBoxes", "Type": "sliderthingy", "StringArray": ["[OFF]", "Really Close", "Close", "Legit", "Semi Legit", "Semi Blatant", "Blatant", "Rage"] },
+      { "DisplayName": "No Wind", "Type": "togglethingy", "AssociatedBool": "nowind" },
+      { "DisplayName": "Anti Grab", "Type": "togglethingy", "AssociatedBool": "antigrab" },
+      { "DisplayName": "Name Changer", "Type": "togglethingy", "AssociatedBool": "namechanger", "Extra": "[STUMP]" },
+      { "DisplayName": "Next", "Type": "submenuthingy", "AssociatedString": "Player2" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Player2": [
+      { "DisplayName": "Decapitation", "Type": "togglethingy", "AssociatedBool": "decapitation" },
+      { "DisplayName": "Rainbow Monkey", "Type": "togglethingy", "AssociatedBool": "rainbowmonkey", "Extra": "[STUMP]" },
+      { "DisplayName": "Bad Apple Monkey", "Type": "togglethingy", "AssociatedBool": "badapplemonkey", "Extra": "[STUMP]" },
+      { "DisplayName": "Aimbot", "Type": "sliderthingy", "StringArray": ["[OFF]", "Silent Aim", "Slilent Aim (Preds)"], "Extra": "[PAINTBRAWL]" },
+      { "DisplayName": "Anti Tag", "Type": "togglethingy", "AssociatedBool": "antitag" },
+      { "DisplayName": "Fake Lag", "Type": "togglethingy", "AssociatedBool": "fakelag" },
+      { "DisplayName": "Disable Ghost Doors", "Type": "togglethingy", "AssociatedBool": "disableghostdoors" },
+      { "DisplayName": "Coloured Braclet", "Type": "sliderthingy", "StringArray": ["[OFF]", "Rainbow", "Purple", "Black", "White", "Red", "Green", "Blue", "Yellow"] },
+      { "DisplayName": "Ghost Self", "Type": "buttonthingy", "AssociatedString": "ghostself", "Extra": "[GR]" },
+      { "DisplayName": "Ghost Revive Self", "Type": "buttonthingy", "AssociatedString": "ghostreviveself", "Extra": "[M] [GR]" },
+      { "DisplayName": "FPS Spoof", "Type": "togglethingy", "AssociatedBool": "fpsspoof" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Exploits": [
+      { "DisplayName": "Break NameTags", "Type": "togglethingy", "AssociatedBool": "breaknametags" },
+      { "DisplayName": "SS Platforms", "Type": "togglethingy", "AssociatedBool": "SSPlatforms", "Extra": "[M] [BASEMENT]" },
+      { "DisplayName": "Cosmetics Spoofer", "Type": "submenuthingy", "AssociatedString": "Cosmetics Spoofer" },
+      { "DisplayName": "Freeze All", "Type": "togglethingy", "AssociatedBool": "freezeall" },
+      { "DisplayName": "Become Guardian", "Type": "buttonthingy", "AssociatedString": "Become Guardian", "Extra": "[M]" },
+      { "DisplayName": "Always Guardian", "Type": "togglethingy", "AssociatedBool": "alwaysguardian" },
+      { "DisplayName": "Grab All", "Type": "togglethingy", "AssociatedBool": "graball", "Extra": "[GUARDIAN]" },
+      { "DisplayName": "App Quit All", "Type": "togglethingy", "AssociatedBool": "appquitall", "Extra": "[GUARDIAN]" },
+      { "DisplayName": "Next", "Type": "submenuthingy", "AssociatedString": "Exploits2" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Exploits2": [
+      { "DisplayName": "Max Quest Score", "Type": "buttonthingy", "AssociatedString": "Max Quest Score" },
+      { "DisplayName": "Lag All [DISABLED]", "Type": "togglethingy", "AssociatedBool": "lagall" },
+      { "DisplayName": "Make Room Private", "Type": "buttonthingy", "AssociatedString": "Make Room Private", "Extra": "[DISABLE KICK ALL]" },
+      { "DisplayName": "Make Room Public", "Type": "buttonthingy", "AssociatedString": "Make Room Public", "Extra": "[KICK ALL]" },
+      { "DisplayName": "Lock Room", "Type": "buttonthingy", "AssociatedString": "Lock Room" },
+      { "DisplayName": "BroadCast Room", "Type": "buttonthingy", "AssociatedString": "BroadCast Room" },
+      { "DisplayName": "Perm Break Room", "Type": "buttonthingy", "AssociatedString": "Perm Break Room" },
+      { "DisplayName": "Kick All", "Type": "togglethingy", "AssociatedBool": "kickall", "Extra": "[GUARDIAN] OR [JOIN TRIGGER]" },
+      { "DisplayName": "Make Name KKK", "Type": "buttonthingy", "AssociatedString": "Make Name KKK" },
+      { "DisplayName": "Particle Spam", "Type": "togglethingy", "AssociatedBool": "particlespam", "Extra": "[M] [GR]" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "CosmeticsSpoofer": [
+      { "DisplayName": "Spaz All Cosmetics", "Type": "togglethingy", "AssociatedBool": "spazallcosmetics" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Computer": [
+      { "DisplayName": "Disconnect", "Type": "buttonthingy", "AssociatedString": "disconnect" },
+      { "DisplayName": "Join GTC", "Type": "buttonthingy", "AssociatedString": "join GTC" },
+      { "DisplayName": "Join TTT", "Type": "buttonthingy", "AssociatedString": "join TTT" },
+      { "DisplayName": "Join YTTV", "Type": "buttonthingy", "AssociatedString": "join YTTV" },
+      { "DisplayName": "Join MODS", "Type": "buttonthingy", "AssociatedString": "join MODS" },
+      { "DisplayName": "Join MOD", "Type": "buttonthingy", "AssociatedString": "join MOD" },
+      { "DisplayName": "Join:", "Type": "buttonthingy", "AssociatedString": "join", "Extra": "roomtojoin" },
+      { "DisplayName": "Join CCMV2 Only", "Type": "buttonthingy", "AssociatedString": "join CCMV2 Only" },
+      { "DisplayName": "Gamemodes", "Type": "submenuthingy", "AssociatedString": "Gamemodes" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Gamemodes": [
+      { "DisplayName": "Modded Gamemode", "Type": "togglethingy", "AssociatedBool": "moddedgamemode" },
+      { "DisplayName": "Competitive Gamemode", "Type": "togglethingy", "AssociatedBool": "competitivegamemode" },
+      { "DisplayName": "Infection", "Type": "buttonthingy", "AssociatedString": "cgamemode Infection" },
+      { "DisplayName": "Casual", "Type": "buttonthingy", "AssociatedString": "cgamemode Casual" },
+      { "DisplayName": "Hunt", "Type": "buttonthingy", "AssociatedString": "cgamemode Hunt" },
+      { "DisplayName": "PaintBrawl", "Type": "buttonthingy", "AssociatedString": "cgamemode Paintbrawl" },
+      { "DisplayName": "Guardian", "Type": "buttonthingy", "AssociatedString": "cgamemode Guardian" },
+      { "DisplayName": "Ambush", "Type": "buttonthingy", "AssociatedString": "cgamemode Ambush" },
+      { "DisplayName": "Freeze Tag", "Type": "buttonthingy", "AssociatedString": "cgamemode FreezeTag" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Safety": [
+      { "DisplayName": "Panic", "Type": "togglethingy", "AssociatedBool": "Panic" },
+      { "DisplayName": "AntiReport", "Type": "sliderthingy", "StringArray": ["[OFF]", "Disconnect", "Reconnect", "Join Random"] },
+      { "DisplayName": "RandomIdentity", "Type": "buttonthingy", "AssociatedString": "randomidentity" },
+      { "DisplayName": "Pc Check Bypass", "Type": "togglethingy", "AssociatedBool": "pccheckbypass" },
+      { "DisplayName": "Fake Quest Menu", "Type": "togglethingy", "AssociatedBool": "fakequestmenu" },
+      { "DisplayName": "Fake Report Menu", "Type": "togglethingy", "AssociatedBool": "fakereportmenu" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Settings": [
+      { "DisplayName": "Colour Settings", "Type": "submenuthingy", "AssociatedString": "ColourSettings" },
+      { "DisplayName": "MenuPosition", "Type": "sliderthingy", "StringArray": ["Top Left", "Middle", "Top Right"] },
+      { "DisplayName": "Config", "Type": "sliderthingy", "StringArray": [] },
+      { "DisplayName": "Load Config", "Type": "buttonthingy", "AssociatedString": "loadconfig" },
+      { "DisplayName": "Save Config", "Type": "buttonthingy", "AssociatedString": "saveconfig" },
+      { "DisplayName": "Player Logging", "Type": "togglethingy", "AssociatedBool": "PlayerLogging" },
+      { "DisplayName": "Inverted Controls", "Type": "togglethingy", "AssociatedBool": "invertedControls" },
+      { "DisplayName": "Log Out", "Type": "buttonthingy", "AssociatedString": "logout" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Info": [
+      { "DisplayName": "PlayerList", "Type": "buttonthingy" },
+      { "DisplayName": "GTC Ranked Codes", "Type": "buttonthingy" },
+      { "DisplayName": "IIDK Menu Users", "Type": "buttonthingy" },
+      { "DisplayName": "CCMV2 Menu Users", "Type": "buttonthingy" },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "MusicPlayer": [
+      { "DisplayName": "Music", "Type": "sliderthingy", "StringArray": [] },
+      { "DisplayName": "Play Music", "Type": "buttonthingy", "AssociatedString": "playmusic" },
+      { "DisplayName": "Stop Music", "Type": "buttonthingy", "AssociatedString": "stopmusic" },
+      { "DisplayName": "Shuffle Music", "Type": "buttonthingy", "AssociatedString": "shufflemusic" },
+      { "DisplayName": "Loop Music", "Type": "togglethingy", "AssociatedBool": "loopmusic" },
+      { "DisplayName": "Sound Board", "Type": "togglethingy", "AssociatedBool": "soundboard" },
+      { "DisplayName": "Volume", "Type": "sliderthingy", "StringArray": ["100%", "90%", "80%", "70%", "60%", "50%", "40%", "30%", "20%", "10%"] },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "Macro": [
+      { "DisplayName": "Macro", "Type": "sliderthingy", "StringArray": [] },
+      { "DisplayName": "Load Macro", "Type": "buttonthingy", "AssociatedString": "loadmacro" },
+      { "DisplayName": "Stop Macro", "Type": "buttonthingy", "AssociatedString": "stopmacro" },
+      { "DisplayName": "Record Macro", "Type": "togglethingy", "AssociatedBool": "recordmacro" },
+      { "DisplayName": "Delete Macro", "Type": "buttonthingy", "AssociatedString": "deletemacro" },
+      { "DisplayName": "Auto Play Proximity", "Type": "togglethingy", "AssociatedBool": "autoplayproximity" },
+      { "DisplayName": "Auto Play Distance", "Type": "sliderthingy", "StringArray": ["Really Close", "Close", "Legit", "Semi Legit", "Semi Blatant", "Blatant", "Rage"] },
+      { "DisplayName": "Macro Lerp Speed", "Type": "sliderthingy", "StringArray": ["0.1", "0.2", "0.3", "0.4", "0.5", "0.6"] },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ],
+    "ColourSettings": [
+      { "DisplayName": "MenuColour", "Type": "sliderthingy", "StringArray": ["Purple", "Red", "Yellow", "Green", "Blue"] },
+      { "DisplayName": "Ghost Colour", "Type": "sliderthingy", "StringArray": ["Purple", "Red", "Yellow", "Green", "Blue"] },
+      { "DisplayName": "Beam Colour", "Type": "sliderthingy", "StringArray": ["Purple", "Red", "Yellow", "Green", "Blue"] },
+      { "DisplayName": "ESP Colour", "Type": "sliderthingy", "StringArray": ["Purple", "Red", "Yellow", "Green", "Blue"] },
+      { "DisplayName": "Ghost Opacity", "Type": "sliderthingy", "StringArray": ["100%", "80%", "60%", "30%", "20%", "0%"] },
+      { "DisplayName": "HitBoxes Opacity", "Type": "sliderthingy", "StringArray": ["100%", "80%", "60%", "30%", "20%", "0%"] },
+      { "DisplayName": "HitBoxes Colour", "Type": "sliderthingy", "StringArray": ["Purple", "Red", "Yellow", "Green", "Blue"] },
+      { "DisplayName": "Platforms Colour", "Type": "sliderthingy", "StringArray": ["Purple", "Red", "Yellow", "Green", "Blue"] },
+      { "DisplayName": "TargetIndicator Colour", "Type": "sliderthingy", "StringArray": ["Purple", "Red", "Yellow", "Green", "Blue"] },
+      { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }
+    ]
+  }
+}

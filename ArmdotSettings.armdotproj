@@ -1,0 +1,149 @@
+<ArmDotProject ProjectVersion="2">
+  <MapFile Create="false" Path="" />
+  <Cryptography Method="RSA" PrivateExponent="YTm4kT2YjIaXP2MvYz2RDk84DeI/sVqPm43Koe2wFBK0tjLqOnynaq6f9almI3pG7nyqfp696qq7ubg2kJ+VtleO2rv42/PZAzcvJmAIZsWwSPNreyvE91dTPuk9v8dzSrHByVR6VbHuYhHkO4jCerSSR323Ya0Iv5xgT+tQqGgA" PublicExponent="AQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" Modulus="TeN+NlRf6+mWhSIwIc1cJOqZwjQp9QDaaoqRh9P4323gLuuaIKwZiwlMEq1a/m7T9fCTMELimnrfpLgZMMj4KxMMPHwyLN3834E1TixbDnDb1/hGxh/5DjEQ/zY37BZHYBiI/e2VkHv+yT9WEV5VLobftFeptPK06X7sed0/fqEA" />
+  <Assemblies>
+    <Assembly SourcePath="ColossalConfig\bin\Release\ColossalV2.dll" TargetPath="ColossalConfig\bin\Release\ColossalV2.dll" CreatePdb="false">
+      <ObfuscationOptions>
+        <ObfuscationOption Name="EncryptStrings" Enabled="true" Inherit="true" />
+        <ObfuscationOption Name="ControlFlowObfuscation" Enabled="true" Inherit="true" />
+        <ObfuscationOption Name="ObfuscateNames" Enabled="false" Inherit="true" />
+        <ObfuscationOption Name="VirtualizeCode" Enabled="true" Inherit="true" />
+        <ObfuscationOption Name="ObfuscateNamespaces" Enabled="true" Inherit="true" />
+      </ObfuscationOptions>
+      <Types />
+      <Methods />
+    </Assembly>
+    <Assembly SourcePath="ColossalCheatMenuV2\bin\Release\ColossalCheatMenuV2.dll" TargetPath="ColossalCheatMenuV2\bin\Release\ColossalCheatMenuV2.dll" CreatePdb="false">
+      <ObfuscationOptions>
+        <ObfuscationOption Name="EncryptStrings" Enabled="true" Inherit="true" />
+        <ObfuscationOption Name="ControlFlowObfuscation" Enabled="true" Inherit="true" />
+        <ObfuscationOption Name="ObfuscateNames" Enabled="false" Inherit="true" />
+        <ObfuscationOption Name="VirtualizeCode" Enabled="true" Inherit="true" />
+        <ObfuscationOption Name="ObfuscateNamespaces" Enabled="true" Inherit="true" />
+      </ObfuscationOptions>
+      <Types />
+      <Methods />
+    </Assembly>
+  </Assemblies>
+  <Licenses />
+  <Files>
+    <File Name="&lt;AssemblyDirectory&gt;" Directory="true" Isolation="merged">
+      <Files />
+    </File>
+    <File Name="&lt;ApplicationDirectory&gt;" Directory="true" Isolation="merged">
+      <Files />
+    </File>
+    <File Name="&lt;SystemDrive&gt;" Directory="true" Isolation="merged">
+      <Files>
+        <File Name="&lt;Windows&gt;" Directory="true" Isolation="merged">
+          <Files>
+            <File Name="&lt;System32_32Bit&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;System32_64Bit&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+          </Files>
+        </File>
+        <File Name="&lt;UserProfile&gt;" Directory="true" Isolation="merged">
+          <Files>
+            <File Name="&lt;UserProfile_AppData&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;UserProfile_Desktop&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;UserProfile_Documents&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;UserProfile_Music&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;UserProfile_Pictures&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;UserProfile_Video&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;UserProfile_Favorites&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;UserProfile_Templates&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;UserProfile_Cookies&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;UserProfile_LocalAppData&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;UserProfile_StartMenu&gt;" Directory="true" Isolation="merged">
+              <Files>
+                <File Name="&lt;UserProfile_StartMenu_Programs&gt;" Directory="true" Isolation="merged">
+                  <Files>
+                    <File Name="&lt;UserProfile_StartMenu_Programs_Startup&gt;" Directory="true" Isolation="merged">
+                      <Files />
+                    </File>
+                  </Files>
+                </File>
+              </Files>
+            </File>
+          </Files>
+        </File>
+        <File Name="&lt;AllUsers&gt;" Directory="true" Isolation="merged">
+          <Files>
+            <File Name="&lt;AllUsers_AppData&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;AllUsers_Desktop&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;AllUsers_Documents&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;AllUsers_Music&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;AllUsers_Pictures&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;AllUsers_Video&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;AllUsers_Favorites&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;AllUsers_Templates&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+            <File Name="&lt;AllUsers_StartMenu&gt;" Directory="true" Isolation="merged">
+              <Files>
+                <File Name="&lt;AllUsers_StartMenu_Programs&gt;" Directory="true" Isolation="merged">
+                  <Files>
+                    <File Name="&lt;AllUsers_StartMenu_Programs_Startup&gt;" Directory="true" Isolation="merged">
+                      <Files />
+                    </File>
+                  </Files>
+                </File>
+              </Files>
+            </File>
+          </Files>
+        </File>
+        <File Name="&lt;ProgramFiles_32Bit&gt;" Directory="true" Isolation="merged">
+          <Files>
+            <File Name="&lt;ProgramFiles_32Bit_Common&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+          </Files>
+        </File>
+        <File Name="&lt;ProgramFiles_64Bit&gt;" Directory="true" Isolation="merged">
+          <Files>
+            <File Name="&lt;ProgramFiles_64Bit_Common&gt;" Directory="true" Isolation="merged">
+              <Files />
+            </File>
+          </Files>
+        </File>
+      </Files>
+    </File>
+  </Files>
+</ArmDotProject>
