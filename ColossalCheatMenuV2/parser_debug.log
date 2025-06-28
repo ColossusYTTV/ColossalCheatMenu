@@ -1,4 +1,4 @@
-Parsing started: 06/27/2025 22:31:07
+Parsing started: 06/28/2025 13:53:37
 Processing menu: ColourSettings
 Parsing option: MenuColour, Type: sliderthingy
 Output sliderthingy: MenuColour,[Purple|Red|Yellow|Green|Blue]
@@ -101,6 +101,8 @@ Output buttonthingy: Make Name KKK,Make Name KKK
 Parsing option: Particle Spam, Type: togglethingy
 Output togglethingy: Particle Spam,particlespam
 Appended extra: [M] [GR]
+Parsing option: VC Mute Evade, Type: buttonthingy
+Output buttonthingy: VC Mute Evade,VC Mute Evade
 Parsing option: Back, Type: submenuthingy
 Output submenuthingy: Back,backthingy
 Output menu: Exploits2
@@ -453,4 +455,4 @@ Output togglethingy: Show Boards,ShowBoards
 Parsing option: Back, Type: submenuthingy
 Output submenuthingy: Back,backthingy
 Output menu: Visual2
-Parsing completed: 06/27/2025 22:31:08
+Parsing completed: 06/28/2025 13:53:37

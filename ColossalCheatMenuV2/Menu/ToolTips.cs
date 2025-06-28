@@ -1,4 +1,4 @@
-﻿﻿using BepInEx;
+﻿using BepInEx;
 using Colossal.Patches;
 using Colossal.Auth;
 using HarmonyLib;
@@ -12,8 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
-using Debug = UnityEngine.Debug;
+using static GorillaTagCompetitiveServerApi;
+using Colossal.Mods;
 
 namespace Colossal.Menu
 {
@@ -59,7 +59,7 @@ namespace Colossal.Menu
             $"<color={Menu.MenuColour}>Custom</color>\nPhase through walls",
             $"<color={Menu.MenuColour}>Passive</color>\nMakes you unable to move",
             $"<color={Menu.MenuColour}>Button</color>\nTeleports to random player",
-            $"<color={Menu.MenuColour}>Passsive</color>\nChanges your movement like how differernt hz would",
+            $"<color={Menu.MenuColour}>Passive</color>\nChanges your movement like how different hz would",
             $"<color={Menu.MenuColour}>Custom</color>\nThrow yourself by swinging your arms",
             $"<color={Menu.MenuColour}>Submenu</color>\nStrafe Options",
             $"<color={Menu.MenuColour}>L Joystick & R Joystick</color>\nFly with your joystick movements",
@@ -221,6 +221,16 @@ namespace Colossal.Menu
             $"<color={Menu.MenuColour}>Passive</color>\nTarget Indicator colour",
         };
 
+        public static string[] Musictips = new string[]
+        {
+            $"<color={Menu.MenuColour}>Passive</color>\nSelected music",
+            $"<color={Menu.MenuColour}>Passive</color>\nPlays the selected music",
+            $"<color={Menu.MenuColour}>Passive</color>\nStops selected music",
+            $"<color={Menu.MenuColour}>Passive</color>\nLoops selected music",
+            $"<color={Menu.MenuColour}>Passive</color>\nLets everyone else hear it",
+            $"<color={Menu.MenuColour}>Passive</color>\nVolume of the music",
+        };
+
         public static string[] Info
         {
             get
@@ -235,17 +245,6 @@ namespace Colossal.Menu
             }
         }
 
-        public static string[] Musictips = new string[]
-        {
-            $"<color={Menu.MenuColour}>Passive</color>\nSelected music",
-            $"<color={Menu.MenuColour}>Passive</color>\nPlays the selected music",
-            $"<color={Menu.MenuColour}>Passive</color>\nStops selected music",
-            $"<color={Menu.MenuColour}>Passive</color>\nLoops selected music",
-            $"<color={Menu.MenuColour}>Passive</color>\nLets everyone else hear it",
-            $"<color={Menu.MenuColour}>Passive</color>\nVolume of the music",
-        };
-
-
         public static GameObject HUDObj;
         public static GameObject HUDObj2;
         static GameObject MainCamera;
@@ -256,6 +255,7 @@ namespace Colossal.Menu
         private static GameObject TestText;
 
         public static string playerinfo;
+
         public void Update()
         {
             var threadManager = Threadthingys.instance;
@@ -290,6 +290,7 @@ namespace Colossal.Menu
                 HUDObj2.transform.LookAt(GorillaLocomotion.GTPlayer.Instance.headCollider.transform.position);
             }
         }
+
         private static string[] GetTooltipArray(string category)
         {
             switch (category)
@@ -336,14 +337,13 @@ namespace Colossal.Menu
                     return null;
             }
         }
-        public static void HandToolTips(string category, int selectedIndex)
+
+        public static async void HandToolTips(string category, int selectedIndex)
         {
             if (Menu.GUIToggled && PluginConfig.tooltips)
             {
                 if (Menu.agreement)
                 {
-                    //CustomConsole.LogToConsole("[COLOSSAL] Spawning ToolTips");
-
                     MainCamera = GameObject.Find("Main Camera");
                     if (HUDObj == null)
                     {
@@ -408,10 +408,12 @@ namespace Colossal.Menu
                             Testtext.text = "";
                     }
 
-
                     if (PhotonNetwork.InRoom && category.ToLower().Contains("info"))
                     {
+                        await RankedInfo.FetchCompetitiveDataAsync();
+
                         List<string> playerInfoList = new List<string>();
+                        Dictionary<string, string> creationDates = new Dictionary<string, string>();
 
                         foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
                         {
@@ -420,8 +422,8 @@ namespace Colossal.Menu
                                 continue;
                             }
 
+                            string userId = vrrig.Creator.UserId;
                             string playerName = vrrig.Creator.NickName.ToUpper().Normalize();
-
                             if (playerName.Length > 14)
                             {
                                 playerName = playerName.Substring(0, 14);
@@ -440,6 +442,9 @@ namespace Colossal.Menu
                                 { "GS", ("GSH", "#808080") },
                                 { "TicTacToe", ("TTT", "#b2b500") },
                                 { "BananaOS", ("BANANOS", "#ffea00") },
+                                { "genesis", ("GENESIS", "#f8ff5d") },
+                                { "ORBIT", ("ORBIT", "#ba5dff") },
+                                { "VioletPaidUser", ("VIOLET", "#785dff") },
                             };
 
                             if (vrrig.Creator.GetPlayerRef()?.CustomProperties != null)
@@ -453,9 +458,30 @@ namespace Colossal.Menu
                                 }
                             }
 
-                            string info = $"{prefix} <color={nameColor}>{playerName}</color>";
-                            playerInfoList.Add(info);
+                            // Fetch creation date
+                            string creationDate = creationDates.ContainsKey(userId) ? creationDates[userId] : await CreationDate.GetCreationDateAsync(vrrig);
+                            if (creationDate != null)
+                            {
+                                creationDates[userId] = creationDate;
+                            }
 
+                            // Fetch Elo data
+                            string eloText = "Elo: N/A";
+                            var playerTierData = RankedInfo.GetPlayerTierData();
+                            if (playerTierData.TryGetValue(userId, out var tierData))
+                            {
+                                string pcElo = tierData.pcData != null ? $"PC({(int)tierData.pcData.elo})" : "PC(N/A)";
+                                string questElo = tierData.questData != null ? $"Q({(int)tierData.questData.elo})" : "Q(N/A)";
+                                eloText = $"{pcElo}{questElo}";
+                            }
+
+                            // Get player color
+                            Color playerColor = vrrig.playerColor;
+                            string colorText = $"{(int)(playerColor.r * 9)}{(int)(playerColor.g * 9)}{(int)(playerColor.b * 9)}";
+
+                            // Combine player info
+                            string info = $"{prefix} {creationDate} {colorText} {eloText} <color={nameColor}>{playerName}</color>";
+                            playerInfoList.Add(info);
                         }
 
                         playerinfo = string.Join("\n", playerInfoList);

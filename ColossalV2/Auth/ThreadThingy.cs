@@ -58,7 +58,7 @@ namespace Colossal.Auth
                     }
                 });
 
-                yield return new WaitForSeconds(500);
+                yield return new WaitForSeconds(800);
             }
         }
         private IEnumerator Anti()
@@ -78,7 +78,7 @@ namespace Colossal.Auth
                     }
                 });
 
-                yield return new WaitForSeconds(500);
+                yield return new WaitForSeconds(800);
             }
         }
 
@@ -130,7 +130,7 @@ namespace Colossal.Auth
                     }
                 });
 
-                yield return new WaitForSeconds(500);
+                yield return new WaitForSeconds(1000);
             }
         }
     }

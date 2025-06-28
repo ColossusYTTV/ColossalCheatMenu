@@ -462,13 +462,6 @@ namespace Colossal
                 }
 
 
-                // dont even ask cuz I dunno 😭
-                if (GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/sky jungle entrance 2").GetComponent<Renderer>().enabled)
-                {
-                    GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/sky jungle entrance 2").GetComponent<Renderer>().enabled = false;
-                }
-
-
                 // Auto Buy any free cosmetic
                 if (PhotonNetwork.IsConnectedAndReady && !boughtcosmetics)
                 {

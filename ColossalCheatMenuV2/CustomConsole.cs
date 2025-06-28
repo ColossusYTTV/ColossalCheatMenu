@@ -10,7 +10,7 @@ namespace Colossal
 {
     public class CustomConsole : MonoBehaviour
     {
-        public static bool isBeta = true;
+        public static bool isBeta = false;
 
         private const int SW_HIDE = 0;
         private const int SW_SHOW = 5;

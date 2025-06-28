@@ -1254,6 +1254,10 @@ namespace Colossal.Menu
                             GorillaComputer.instance.currentName = name;
                             GorillaComputer.instance.savedName = name;
                         }
+                        if(option.AssociatedString == "VC Mute Evade")
+                        {
+                            GorillaTagger.moderationMutedTime = -1;
+                        }
 
 
                         //Computer

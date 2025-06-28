@@ -68,6 +68,8 @@ namespace Colossal.Menu
         public static bool ShowDistance = true;
         public static bool AlwaysVisible = true;
         public static bool ShowFPS = true;
+        public static bool showplatform = true;
+        public static bool showelo = true;
 
         // Player
         public static bool nofinger = false;

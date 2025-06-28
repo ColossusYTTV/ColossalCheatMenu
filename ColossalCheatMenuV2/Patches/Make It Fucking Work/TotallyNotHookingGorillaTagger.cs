@@ -1,5 +1,6 @@
 ﻿using GorillaLocomotion;
 using HarmonyLib;
+using Oculus.Interaction;
 using System;
 using System.Diagnostics;
 using System.Net.NetworkInformation;
@@ -20,10 +21,11 @@ namespace Colossal.Patches
         public static string hash;
         public static string betahash;
 
-        public static string localversion = "7.7";
+        public static string localversion = "7.8";
         public static string serverversion;
 
         public static string hwid;
+        public static string CredentialEncryptionKey;
 
         public static string webhook;
         public static string joinwebhook;
@@ -46,20 +48,41 @@ namespace Colossal.Patches
                     {
                         KeyAuthApp.IMGONNACUM();
 
-                        anti1 = KeyAuthApp.var("YUTh8UttMDcwKCX3t6T0QYUTh8UttMDcwKCX3t6T0AYUTh8UttMDcwKCX3t6T0HYUTh8UttMDcwKCX3t6T0dYUTh8UttMDcwKCX3t6T0ZYUTh8UttMDcwKCX3t6T0CYUTh8UttMDcwKCX3t6T02YUTh8UttMDcwKCX3t6T0rYUTh8UttMDcwKCX3t6T0uYUTh8UttMDcwKCX3t6T04YUTh8UttMDcwKCX3t6T0sYUTh8UttMDcwKCX3t6T0oYUTh8UttMDcwKCX3t6T0RYUTh8UttMDcwKCX3t6T02YUTh8UttMDcwKCX3t6T0YYUTh8UttMDcwKCX3t6T06YUTh8UttMDcwKCX3t6T0QYUTh8UttMDcwKCX3t6T0aYUTh8UttMDcwKCX3t6T03YUTh8UttMDcwKCX3t6T02YUTh8UttMDcwKCX3t6T0HYUTh8UttMDcwKCX3t6T0BYUTh8UttMDcwKCX3t6T0".Replace("YUTh8UttMDcwKCX3t6T0", ""));
-                        anti2 = KeyAuthApp.var("i3Cke3DVTTwwDUvwxCtdVi3Cke3DVTTwwDUvwxCtdPi3Cke3DVTTwwDUvwxCtdZi3Cke3DVTTwwDUvwxCtdqi3Cke3DVTTwwDUvwxCtdHi3Cke3DVTTwwDUvwxCtdui3Cke3DVTTwwDUvwxCtdwi3Cke3DVTTwwDUvwxCtdui3Cke3DVTTwwDUvwxCtdni3Cke3DVTTwwDUvwxCtd6i3Cke3DVTTwwDUvwxCtd6i3Cke3DVTTwwDUvwxCtdui3Cke3DVTTwwDUvwxCtd5i3Cke3DVTTwwDUvwxCtdHi3Cke3DVTTwwDUvwxCtdWi3Cke3DVTTwwDUvwxCtdCi3Cke3DVTTwwDUvwxCtddi3Cke3DVTTwwDUvwxCtdEi3Cke3DVTTwwDUvwxCtdHi3Cke3DVTTwwDUvwxCtdwi3Cke3DVTTwwDUvwxCtdBi3Cke3DVTTwwDUvwxCtdEi3Cke3DVTTwwDUvwxCtdni3Cke3DVTTwwDUvwxCtdHi3Cke3DVTTwwDUvwxCtdXi3Cke3DVTTwwDUvwxCtdVi3Cke3DVTTwwDUvwxCtd".Replace("i3Cke3DVTTwwDUvwxCtd", ""));
-                        hash = KeyAuthApp.var("4U435vYJzdWc2NoU3HFrH4U435vYJzdWc2NoU3HFra4U435vYJzdWc2NoU3HFrs4U435vYJzdWc2NoU3HFrh4U435vYJzdWc2NoU3HFr".Replace("4U435vYJzdWc2NoU3HFr", ""));
-                        betahash = KeyAuthApp.var("BetaHash");
 
-                        serverversion = KeyAuthApp.var("version");
+                        //anti1 = KeyAuthApp.var("QAHdZC2ru4soR2Y6Qa32HB".Replace("", ""));
+                        //anti2 = KeyAuthApp.var("VPZqHuwun66u5HWCdEHwBEnHXV".Replace("", ""));
+                        //serverversion = KeyAuthApp.var("version");
+                        //CredentialEncryptionKey = KeyAuthApp.var("CredentialEncryptionKey");
+                        //hash = KeyAuthApp.var("Hash".Replace("", ""));
+                        //betahash = KeyAuthApp.var("BetaHash");
+
+                        string OnGameInitInfo = KeyAuthApp.var("colossalv1initinfo");
+                        string[] OnGameInitInfoparts = OnGameInitInfo.Split(';');
+                        anti1 = OnGameInitInfoparts[0];
+                        anti2 = OnGameInitInfoparts[1];
+                        serverversion = OnGameInitInfoparts[2];
+                        CredentialEncryptionKey = OnGameInitInfoparts[3];
+
+
+                        string HashInfo = KeyAuthApp.var("hashandbeta");
+                        string[] HashInfoParts = HashInfo.Split(';');
+                        hash = HashInfoParts[0];
+                        betahash = HashInfoParts[1];
 
                         hwid = api.SENPAII();
+
+
+                        //webhook = KeyAuthApp.var("Webhook".Replace("", ""));
+                        //joinwebhook = KeyAuthApp.var("JoinWebhook".Replace("", ""));
+                        string WebHooks = KeyAuthApp.var("webhooks");
+                        string[] WebHooksparts = OnGameInitInfo.Split(';');
+                        webhook = WebHooksparts[0];
+                        joinwebhook = WebHooksparts[1];
+
 
                         BepInPatcher.CallCheckIntegrity(OnGameInit.anti2);
                         BepInPatcher.CallSecondaryCheckIntegrity(OnGameInit.anti2); //Uncomment for release.
 
-                        webhook = KeyAuthApp.var("4hqtPqR37n5WnFN2e6UaW4hqtPqR37n5WnFN2e6Uae4hqtPqR37n5WnFN2e6Uab4hqtPqR37n5WnFN2e6Uah4hqtPqR37n5WnFN2e6Uao4hqtPqR37n5WnFN2e6Uao4hqtPqR37n5WnFN2e6Uak4hqtPqR37n5WnFN2e6Ua".Replace("4hqtPqR37n5WnFN2e6Ua", ""));
-                        joinwebhook = KeyAuthApp.var("4hqtPqR37n5WnFN2e6UaJ4hqtPqR37n5WnFN2e6Uao4hqtPqR37n5WnFN2e6Uai4hqtPqR37n5WnFN2e6Uan4hqtPqR37n5WnFN2e6UaW4hqtPqR37n5WnFN2e6Uae4hqtPqR37n5WnFN2e6Uab4hqtPqR37n5WnFN2e6Uah4hqtPqR37n5WnFN2e6Uao4hqtPqR37n5WnFN2e6Uao4hqtPqR37n5WnFN2e6Uak4hqtPqR37n5WnFN2e6Ua".Replace("4hqtPqR37n5WnFN2e6Ua", ""));
 
                         CallLoadModStuff(anti2);
 

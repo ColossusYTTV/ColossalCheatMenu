@@ -38,6 +38,7 @@
     <Compile Include="Patches\GorillaTaggerPatch.cs" />
     <Compile Include="Patches\HarmonyPatches.cs" />
     <Compile Include="Patches\SendDeviceInfo.cs" />
+    <Compile Include="Patches\TOS.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="PluginInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

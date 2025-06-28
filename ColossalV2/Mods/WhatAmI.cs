@@ -18,9 +18,6 @@ namespace Colossal
         public static bool oculus = false;
         public static bool IsInfected(NetPlayer player)
         {
-            RankedProgressionManager.Instance.SetEloScore(int.MaxValue);
-
-
             if (PhotonNetwork.InRoom && infectionmanager != null && player != null)
             {
                 if (infectionmanager.currentInfected.Contains(player) || competitivemanager.currentInfected.Contains(player))

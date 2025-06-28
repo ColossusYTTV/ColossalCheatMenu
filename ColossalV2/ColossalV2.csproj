@@ -110,6 +110,7 @@
     <Compile Include="Mods\Player\TagAll.cs" />
     <Compile Include="Mods\Player\TagAura.cs" />
     <Compile Include="Mods\Player\TagGun.cs" />
+    <Compile Include="Mods\RankedInfo.cs" />
     <Compile Include="Mods\Safety\AntiReport.cs" />
     <Compile Include="Mods\Safety\FakeQuestMenu.cs" />
     <Compile Include="Mods\Safety\FakeReportMenu.cs" />

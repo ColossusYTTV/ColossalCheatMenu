@@ -1,28 +1,37 @@
-﻿using BepInEx;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using Photon.Pun;
+using TMPro;
+using GorillaNetworking;
 using Colossal.Menu;
 using HarmonyLib;
-using Photon.Pun;
-using Photon.Voice;
-using PlayFab;
-using PlayFab.ClientModels;
-using PlayFab.DataModels;
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using UnityEngine.XR.Interaction.Toolkit;
+using static GorillaTagCompetitiveServerApi;
 
 namespace Colossal.Mods
 {
     public class NameTags : MonoBehaviour
     {
         private HashSet<string> requestedIds = new HashSet<string>();
-        private Dictionary<string, string> tagValues = new Dictionary<string, string>();
         private Dictionary<VRRig, TextMeshPro> clonedTextComponents = new Dictionary<VRRig, TextMeshPro>();
-
         private Vector3 height;
         private Vector3 size;
         private Color colour;
+
+        private void Start()
+        {
+            if (PluginConfig.NameTags && PhotonNetwork.InRoom)
+            {
+                StartCoroutine(FetchCompetitiveDataCoroutine());
+            }
+        }
+
+        private IEnumerator FetchCompetitiveDataCoroutine()
+        {
+            yield return RankedInfo.FetchCompetitiveDataAsync();
+        }
 
         public void Update()
         {
@@ -123,9 +132,10 @@ namespace Colossal.Mods
                                 nameTagText.font.material.shader = Shader.Find("TextMeshPro/Distance Field");
 
                             UpdateCreationDateTag(vrrig, nameTagText);
-                            UpdateTag(vrrig, nameTagText, "Colour", PluginConfig.ShowColourCode, () => $"{vrrig.playerColor.r * 9} {vrrig.playerColor.g * 9} {vrrig.playerColor.b * 9}");
+                            UpdateTag(vrrig, nameTagText, "Colour", PluginConfig.ShowColourCode, () => $"{vrrig.playerColor.r * 9}{vrrig.playerColor.g * 9}{vrrig.playerColor.b * 9}");
                             UpdateDistanceTag(vrrig, nameTagText);
-                            UpdateFPSTag(vrrig, nameTagText);
+                            UpdateEloTag(vrrig, nameTagText);
+                            UpdateTierTag(vrrig, nameTagText);
                         }
                     }
                 }
@@ -151,7 +161,12 @@ namespace Colossal.Mods
                         }
                     }
                 }
+                else
+                {
+                    RankedInfo.ClearData();
+                }
 
+                requestedIds.Clear();
                 Destroy(this);
             }
         }
@@ -163,13 +178,11 @@ namespace Colossal.Mods
                 return existingText;
             }
 
-            // Clone playerText1
             GameObject clonedText1Object = Instantiate(vrrig.playerText1.gameObject);
             clonedText1Object.name = "ClonedNameTag1";
             clonedText1Object.transform.SetParent(vrrig.playerText1.transform.parent, false);
             TextMeshPro clonedText1 = clonedText1Object.GetComponent<TextMeshPro>();
 
-            // Increase width of cloned playerText1
             RectTransform rectTransform = clonedText1.GetComponent<RectTransform>();
             if (rectTransform != null)
             {
@@ -223,6 +236,44 @@ namespace Colossal.Mods
             else
             {
                 RemoveDistanceLine(vrrig, nameTagText);
+            }
+        }
+
+        private void UpdateEloTag(VRRig vrrig, TextMeshPro nameTagText)
+        {
+            if (PluginConfig.showelo)
+            {
+                string userId = vrrig.Creator.UserId;
+                var playerTierData = RankedInfo.GetPlayerTierData();
+                if (playerTierData.TryGetValue(userId, out var tierData))
+                {
+                    string pcElo = tierData.pcData != null ? $"PC({(int)tierData.pcData.elo})" : "PC(N/A)";
+                    string questElo = tierData.questData != null ? $"Q({(int)tierData.questData.elo})" : "Q(N/A)";
+                    AddOrUpdateLine(vrrig, nameTagText, "Elo", $"{pcElo} {questElo}");
+                }
+            }
+            else
+            {
+                RemoveLine(vrrig, nameTagText, "Elo");
+            }
+        }
+
+        private void UpdateTierTag(VRRig vrrig, TextMeshPro nameTagText)
+        {
+            if (PluginConfig.showelo)
+            {
+                string userId = vrrig.Creator.UserId;
+                var playerTierData = RankedInfo.GetPlayerTierData();
+                if (playerTierData.TryGetValue(userId, out var tierData))
+                {
+                    string pcTier = tierData.pcData != null ? $"PC({tierData.pcData.majorTier}.{tierData.pcData.minorTier})" : "PC(N/A)";
+                    string questTier = tierData.questData != null ? $"Q({tierData.pcData.majorTier}.{tierData.pcData.minorTier})" : "Q(N/A)";
+                    AddOrUpdateLine(vrrig, nameTagText, "Tier", $"{pcTier} {questTier}");
+                }
+            }
+            else
+            {
+                RemoveLine(vrrig, nameTagText, "Tier");
             }
         }
 
@@ -334,6 +385,7 @@ namespace Colossal.Mods
                 }
             }
             clonedTextComponents.Clear();
+            requestedIds.Clear();
         }
     }
 }

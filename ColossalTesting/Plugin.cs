@@ -18,6 +18,7 @@ using UnityEngine.AI;
 using GorillaGameModes;
 using ColossalTesting.Util;
 using UnityEngine.UI;
+using static GorillaTagCompetitiveServerApi;
 
 namespace ColossalTesting
 {
@@ -207,6 +208,59 @@ namespace ColossalTesting
                 {
                     GorillaTagger.moderationMutedTime = -1;
                 }),
+                new ButtonData("Get All Comp Stats", () =>
+                {
+                    List<string> playfabIds = new List<string>();
+                    foreach (Photon.Realtime.Player p in PhotonNetwork.PlayerList)
+                    {
+                        if (!string.IsNullOrEmpty(p.UserId))
+                        {
+                            playfabIds.Add(p.UserId);
+                            Debug.Log($"Added player ID: {p.UserId}");
+                        }
+                    }
+
+                    if (playfabIds.Count == 0)
+                    {
+                        Debug.LogWarning("No players found in PhotonNetwork.PlayerList");
+                        return;
+                    }
+
+                    // Make a single API call with all player IDs
+                    GorillaTagCompetitiveServerApi.Instance.RequestGetRankInformation(
+                        playfabIds,
+                        (RankedModeProgressionData data) =>
+                        {
+                            if (data == null || data.playerData == null)
+                            {
+                                Debug.LogWarning("No rank data received from server");
+                                return;
+                            }
+
+                            // Log all players' data
+                            Debug.Log($"Received data for {data.playerData.Count} players");
+                            foreach (var player in data.playerData)
+                            {
+                                Debug.Log($"PlayfabID: {player.playfabID}");
+                                foreach (var platform in player.platformData)
+                                {
+                                    Debug.Log($"Platform: {platform.platform}, Elo: {platform.elo}, MajorTier: {platform.majorTier}, MinorTier: {platform.minorTier}, RankProgress: {platform.rankProgress}");
+                                }
+                            }
+                        });
+                }),
+                new ButtonData("Deregister Scoreboard", () =>
+                {
+                    GorillaTagCompetitiveManager.DeregisterScoreboard(null);
+                }),
+                new ButtonData("Deregister Scoreboard", () =>
+                {
+                    GorillaTagCompetitiveManager.DeregisterScoreboard(null);
+                }),
+                new ButtonData("Deregister Scoreboard", () =>
+                {
+                    
+                }),
             };
         }
 
@@ -319,10 +373,6 @@ namespace ColossalTesting
         {
             if (ToggleManager.LagAll)
             {
-                GREnemyChaser[] GREntity = Resources.FindObjectsOfTypeAll<GREnemyChaser>();
-                //GhostReactorManager.instance.RequestEnemyHitPlayer(GhostReactor.EnemyType.Chaser, GREntity[0].entity.id, GRPlayer.Get(PhotonNetwork.LocalPlayer.ActorNumber));
-                GRReviveStation GRRevive = GameObject.Find("GhostReactorRoot/GhostReactorZone/GRReviveStation").GetComponent<GRReviveStation>();
-                GhostReactorManager.instance.RequestPlayerRevive(GRRevive, GRPlayer.Get(PhotonNetwork.LocalPlayer.ActorNumber));
             }
         }
     }

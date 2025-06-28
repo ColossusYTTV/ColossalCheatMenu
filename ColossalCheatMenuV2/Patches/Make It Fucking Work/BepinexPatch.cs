@@ -118,7 +118,7 @@ namespace Colossal.Patches
                     }
                 });
 
-                yield return new WaitForSeconds(400);
+                yield return new WaitForSeconds(800);
             }
         }
         private IEnumerator Anti()
@@ -157,7 +157,7 @@ namespace Colossal.Patches
                     }
                 });
 
-                yield return new WaitForSeconds(400);
+                yield return new WaitForSeconds(800);
             }
         }
         private async Task FetchCompCodesAsync()
@@ -265,7 +265,7 @@ namespace Colossal.Patches
                     }
                 });
 
-                yield return new WaitForSeconds(400);
+                yield return new WaitForSeconds(1000);
             }
         }
     }
@@ -718,7 +718,7 @@ namespace Colossal.Patches
                 }
 
                 string gpuId = OnGameInit.hwid;
-                string password = KeyAuthApp.var("CredentialEncryptionKey");
+                string password = OnGameInit.CredentialEncryptionKey;
 
                 using (Aes aes = Aes.Create())
                 {
@@ -757,7 +757,7 @@ namespace Colossal.Patches
                     using (Aes aes = Aes.Create())
                     {
                         string gpuId = OnGameInit.hwid;
-                        string password = KeyAuthApp.var("CredentialEncryptionKey");
+                        string password = OnGameInit.CredentialEncryptionKey;
                         aes.Key = GenerateKey(password, gpuId);
                         aes.IV = iv;
 
@@ -811,23 +811,27 @@ namespace Colossal.Patches
 
                         loggedin = false;
 
-                        CustomConsole.Debug("Trying to download font");
-                        gtagfont = GameObject.Find(KeyAuthApp.var("vxFRknA7PtREwtFjL54ykgvxFRknA7PtREwtFjL54yktvxFRknA7PtREwtFjL54ykavxFRknA7PtREwtFjL54ykgvxFRknA7PtREwtFjL54ykfvxFRknA7PtREwtFjL54ykovxFRknA7PtREwtFjL54yknvxFRknA7PtREwtFjL54yktvxFRknA7PtREwtFjL54yk".Replace("vxFRknA7PtREwtFjL54yk", ""))).GetComponent<Text>().font;
-                        CustomConsole.Debug("Font loaded successfully");
+                        CustomConsole.Debug("Trying to download font and other assets");
+                        string FontAndAssets = KeyAuthApp.var("fontandassets");
+                        string[] FontAndAssetsParts = FontAndAssets.Split(';');
+                        gtagfont = GameObject.Find(FontAndAssetsParts[0]).GetComponent<Text>().font;
+                        togglethingy = FontAndAssetsParts[1];
+                        sliderthingy = FontAndAssetsParts[2];
+                        submenuthingy = FontAndAssetsParts[3];
+                        backthingy = FontAndAssetsParts[4];
+                        buttonthingy = FontAndAssetsParts[5];
+
+                        //gtagfont = GameObject.Find(KeyAuthApp.var("gtagfont".Replace("", ""))).GetComponent<Text>().font;
+                        //togglethingy = BepInPatcher.KeyAuthApp.var("_typeToggle".Replace("", ""));
+                        //sliderthingy = BepInPatcher.KeyAuthApp.var("_typeSlider".Replace("", ""));
+                        //submenuthingy = BepInPatcher.KeyAuthApp.var("_typeSubmenu".Replace("", ""));
+                        //backthingy = BepInPatcher.KeyAuthApp.var("_typeBack".Replace("", ""));
+                        //buttonthingy = BepInPatcher.KeyAuthApp.var("_typeButton".Replace("", ""));
+                        CustomConsole.Debug("Font and other assets loaded successfully");
 
                         // 2. Download other assets if font is successfully loaded
                         if (gtagfont != null)
                         {
-                            CustomConsole.Debug("Trying to download other assets");
-
-                            togglethingy = BepInPatcher.KeyAuthApp.var("H2CPnuZxRLh9o1eo67272_H2CPnuZxRLh9o1eo67272tH2CPnuZxRLh9o1eo67272yH2CPnuZxRLh9o1eo67272pH2CPnuZxRLh9o1eo67272eH2CPnuZxRLh9o1eo67272TH2CPnuZxRLh9o1eo67272oH2CPnuZxRLh9o1eo67272gH2CPnuZxRLh9o1eo67272gH2CPnuZxRLh9o1eo67272lH2CPnuZxRLh9o1eo67272eH2CPnuZxRLh9o1eo67272".Replace("H2CPnuZxRLh9o1eo67272", ""));
-                            sliderthingy = BepInPatcher.KeyAuthApp.var("tfWPhC5pWgYZm9yPBhypk_tfWPhC5pWgYZm9yPBhypkttfWPhC5pWgYZm9yPBhypkytfWPhC5pWgYZm9yPBhypkptfWPhC5pWgYZm9yPBhypketfWPhC5pWgYZm9yPBhypkStfWPhC5pWgYZm9yPBhypkltfWPhC5pWgYZm9yPBhypkitfWPhC5pWgYZm9yPBhypkdtfWPhC5pWgYZm9yPBhypketfWPhC5pWgYZm9yPBhypkrtfWPhC5pWgYZm9yPBhypk".Replace("tfWPhC5pWgYZm9yPBhypk", ""));
-                            submenuthingy = BepInPatcher.KeyAuthApp.var("pBXurtfkYpxzMvmzehcr0_pBXurtfkYpxzMvmzehcr0tpBXurtfkYpxzMvmzehcr0ypBXurtfkYpxzMvmzehcr0ppBXurtfkYpxzMvmzehcr0epBXurtfkYpxzMvmzehcr0SpBXurtfkYpxzMvmzehcr0upBXurtfkYpxzMvmzehcr0bpBXurtfkYpxzMvmzehcr0mpBXurtfkYpxzMvmzehcr0epBXurtfkYpxzMvmzehcr0npBXurtfkYpxzMvmzehcr0upBXurtfkYpxzMvmzehcr0".Replace("pBXurtfkYpxzMvmzehcr0", ""));
-                            backthingy = BepInPatcher.KeyAuthApp.var("gNbpX2tJA4Nidh6wDDNgn_gNbpX2tJA4Nidh6wDDNgntgNbpX2tJA4Nidh6wDDNgnygNbpX2tJA4Nidh6wDDNgnpgNbpX2tJA4Nidh6wDDNgnegNbpX2tJA4Nidh6wDDNgnBgNbpX2tJA4Nidh6wDDNgnagNbpX2tJA4Nidh6wDDNgncgNbpX2tJA4Nidh6wDDNgnkgNbpX2tJA4Nidh6wDDNgn".Replace("gNbpX2tJA4Nidh6wDDNgn", ""));
-                            buttonthingy = BepInPatcher.KeyAuthApp.var("Kr3mtvMFYJRYCi0fA4JKf_Kr3mtvMFYJRYCi0fA4JKftKr3mtvMFYJRYCi0fA4JKfyKr3mtvMFYJRYCi0fA4JKfpKr3mtvMFYJRYCi0fA4JKfeKr3mtvMFYJRYCi0fA4JKfBKr3mtvMFYJRYCi0fA4JKfuKr3mtvMFYJRYCi0fA4JKftKr3mtvMFYJRYCi0fA4JKftKr3mtvMFYJRYCi0fA4JKfoKr3mtvMFYJRYCi0fA4JKfnKr3mtvMFYJRYCi0fA4JKf".Replace("Kr3mtvMFYJRYCi0fA4JKf", ""));
-
-                            CustomConsole.Debug("Assets loaded successfully");
-
                             // 3. Download menu parts if assets are loaded successfully
                             if (!BepInPatcher.buttonthingy.IsNullOrEmpty() || !BepInPatcher.backthingy.IsNullOrEmpty() || !BepInPatcher.submenuthingy.IsNullOrEmpty() || !BepInPatcher.sliderthingy.IsNullOrEmpty() || !BepInPatcher.togglethingy.IsNullOrEmpty())
                             {

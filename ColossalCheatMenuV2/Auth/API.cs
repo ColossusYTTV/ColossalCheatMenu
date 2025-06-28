@@ -1,4 +1,4 @@
-﻿﻿using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
@@ -1104,55 +1104,79 @@ public class api
 
     private static string MEOW(NameValueCollection post_data)
     {
-        // Rate limiting: Ensure at least 1 second between requests
-        DateTime now = DateTime.UtcNow;
-        TimeSpan timeSinceLastRequest = now - lastRequestTime;
-        if (timeSinceLastRequest < minRequestInterval)
+        const int maxRetries = 3; // Maximum number of retries
+        const int baseDelayMs = 1000; // Base delay for exponential backoff in milliseconds
+
+        for (int attempt = 0; attempt <= maxRetries; attempt++)
         {
-            int sleepMs = (int)(minRequestInterval - timeSinceLastRequest).TotalMilliseconds;
-            Thread.Sleep(sleepMs);
+            // Rate limiting: Ensure at least 1 second between requests
+            DateTime now = DateTime.UtcNow;
+            TimeSpan timeSinceLastRequest = now - lastRequestTime;
+            if (timeSinceLastRequest < minRequestInterval)
+            {
+                int sleepMs = (int)(minRequestInterval - timeSinceLastRequest).TotalMilliseconds;
+                Thread.Sleep(sleepMs);
+            }
+
+            string responseText = "";
+            UnityWebRequest request = new UnityWebRequest("https://keyauth.com/api/1.3/", "POST");
+
+            WWWForm form = new WWWForm();
+            foreach (string key in post_data.AllKeys)
+            {
+                form.AddField(key, post_data[key]);
+            }
+            request.uploadHandler = new UploadHandlerRaw(form.data);
+            request.downloadHandler = new DownloadHandlerBuffer();
+
+            request.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            request.SendWebRequest();
+
+            while (!request.isDone)
+            {
+                System.Threading.Thread.Sleep(30);
+            }
+
+            // Check for rate limit error (HTTP 429)
+            if (request.responseCode == 429)
+            {
+                if (attempt == maxRetries)
+                {
+                    CustomConsole.Error("Max retries reached for rate-limited request.");
+                    return "";
+                }
+
+                // Exponential backoff: delay = baseDelayMs * 2^attempt
+                int delay = baseDelayMs * (1 << attempt);
+                CustomConsole.Debug($"Rate limit hit, retrying in {delay}ms (attempt {attempt + 1}/{maxRetries})");
+                Thread.Sleep(delay);
+                continue;
+            }
+
+            if (request.isNetworkError || request.isHttpError)
+            {
+                CustomConsole.Error($"Request error: {request.error}");
+                return "";
+            }
+
+            string raw_response = request.downloadHandler.text;
+
+            WebHeaderCollection headers = new WebHeaderCollection();
+            foreach (KeyValuePair<string, string> header in request.GetResponseHeaders())
+            {
+                headers.Add(header.Key, header.Value);
+            }
+
+            sigCheck(raw_response, headers, post_data.Get(0));
+
+            // Update the last request time after the request completes successfully
+            lastRequestTime = DateTime.UtcNow;
+
+            return raw_response;
         }
 
-        string responseText = "";
-        UnityWebRequest request = new UnityWebRequest("https://keyauth.com/api/1.3/", "POST");
-
-        WWWForm form = new WWWForm();
-        foreach (string key in post_data.AllKeys)
-        {
-            form.AddField(key, post_data[key]);
-        }
-        request.uploadHandler = new UploadHandlerRaw(form.data);
-        request.downloadHandler = new DownloadHandlerBuffer();
-
-        request.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        request.SendWebRequest();
-
-        while (!request.isDone)
-        {
-            System.Threading.Thread.Sleep(30);
-        }
-
-        if (request.isNetworkError || request.isHttpError)
-        {
-            UnityEngine.Debug.LogError($"Request error: {request.error}");
-            return "";
-        }
-
-        string raw_response = request.downloadHandler.text;
-
-        WebHeaderCollection headers = new WebHeaderCollection();
-        foreach (KeyValuePair<string, string> header in request.GetResponseHeaders())
-        {
-            headers.Add(header.Key, header.Value);
-        }
-
-        sigCheck(raw_response, headers, post_data.Get(0));
-
-        // Update the last request time after the request completes
-        lastRequestTime = DateTime.UtcNow;
-
-        return raw_response;
+        return ""; // Fallback return in case all retries fail
     }
 
     private static bool assertSSL(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)

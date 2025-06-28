@@ -24,6 +24,7 @@ namespace Colossal.Auth
         public static string hash;
         public static string betahash;
 
+        public static string CredentialEncryptionKey;
         public static string hwid;
 
         public const string RegistryPath = @"SOFTWARE\ColossalCheatMenuV2";
@@ -58,10 +59,22 @@ namespace Colossal.Auth
                     {
                         KeyAuthApp.initreal();
 
-                        anti1 = KeyAuthApp.var("YUTh8UttMDcwKCX3t6T0QYUTh8UttMDcwKCX3t6T0AYUTh8UttMDcwKCX3t6T0HYUTh8UttMDcwKCX3t6T0dYUTh8UttMDcwKCX3t6T0ZYUTh8UttMDcwKCX3t6T0CYUTh8UttMDcwKCX3t6T02YUTh8UttMDcwKCX3t6T0rYUTh8UttMDcwKCX3t6T0uYUTh8UttMDcwKCX3t6T04YUTh8UttMDcwKCX3t6T0sYUTh8UttMDcwKCX3t6T0oYUTh8UttMDcwKCX3t6T0RYUTh8UttMDcwKCX3t6T02YUTh8UttMDcwKCX3t6T0YYUTh8UttMDcwKCX3t6T06YUTh8UttMDcwKCX3t6T0QYUTh8UttMDcwKCX3t6T0aYUTh8UttMDcwKCX3t6T03YUTh8UttMDcwKCX3t6T02YUTh8UttMDcwKCX3t6T0HYUTh8UttMDcwKCX3t6T0BYUTh8UttMDcwKCX3t6T0".Replace("YUTh8UttMDcwKCX3t6T0", ""));
-                        anti2 = KeyAuthApp.var("i3Cke3DVTTwwDUvwxCtdVi3Cke3DVTTwwDUvwxCtdPi3Cke3DVTTwwDUvwxCtdZi3Cke3DVTTwwDUvwxCtdqi3Cke3DVTTwwDUvwxCtdHi3Cke3DVTTwwDUvwxCtdui3Cke3DVTTwwDUvwxCtdwi3Cke3DVTTwwDUvwxCtdui3Cke3DVTTwwDUvwxCtdni3Cke3DVTTwwDUvwxCtd6i3Cke3DVTTwwDUvwxCtd6i3Cke3DVTTwwDUvwxCtdui3Cke3DVTTwwDUvwxCtd5i3Cke3DVTTwwDUvwxCtdHi3Cke3DVTTwwDUvwxCtdWi3Cke3DVTTwwDUvwxCtdCi3Cke3DVTTwwDUvwxCtddi3Cke3DVTTwwDUvwxCtdEi3Cke3DVTTwwDUvwxCtdHi3Cke3DVTTwwDUvwxCtdwi3Cke3DVTTwwDUvwxCtdBi3Cke3DVTTwwDUvwxCtdEi3Cke3DVTTwwDUvwxCtdni3Cke3DVTTwwDUvwxCtdHi3Cke3DVTTwwDUvwxCtdXi3Cke3DVTTwwDUvwxCtdVi3Cke3DVTTwwDUvwxCtd".Replace("i3Cke3DVTTwwDUvwxCtd", ""));
-                        hash = KeyAuthApp.var("4U435vYJzdWc2NoU3HFrH4U435vYJzdWc2NoU3HFra4U435vYJzdWc2NoU3HFrs4U435vYJzdWc2NoU3HFrh4U435vYJzdWc2NoU3HFr".Replace("4U435vYJzdWc2NoU3HFr", ""));
-                        betahash = KeyAuthApp.var("BetaHash");
+                        string InitInfo = KeyAuthApp.var("colossalv2initinfo");
+                        string[] InitIntoParts = InitInfo.Split(';');
+                        anti1 = InitIntoParts[0];
+                        anti2 = InitIntoParts[1];
+                        CredentialEncryptionKey = InitIntoParts[2];
+
+                        //anti1 = KeyAuthApp.var("QAHdZC2ru4soR2Y6Qa32HB".Replace("", ""));
+                        //anti2 = KeyAuthApp.var("VPZqHuwun66u5HWCdEHwBEnHXV".Replace("", ""));
+
+
+                        string HashInfo = KeyAuthApp.var("hashandbeta");
+                        string[] HashInfoParts = HashInfo.Split(';');
+                        hash = HashInfoParts[0];
+                        betahash = HashInfoParts[1];
+                        //hash = KeyAuthApp.var("Hash".Replace("", ""));
+                        //betahash = KeyAuthApp.var("BetaHash");
 
                         hwid = api.SENPAII();
 
@@ -127,7 +140,7 @@ namespace Colossal.Auth
             using (Aes aes = Aes.Create())
             {
                 string gpuId = hwid;
-                string password = KeyAuthApp.var("CredentialEncryptionKey");
+                string password = CredentialEncryptionKey;
                 aes.Key = GenerateKey(password, gpuId);
                 aes.IV = iv;
 
