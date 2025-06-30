@@ -149,7 +149,7 @@
       { "DisplayName": "BroadCast Room", "Type": "buttonthingy", "AssociatedString": "BroadCast Room" },
       { "DisplayName": "Perm Break Room", "Type": "buttonthingy", "AssociatedString": "Perm Break Room" },
       { "DisplayName": "Kick All", "Type": "togglethingy", "AssociatedBool": "kickall", "Extra": "[GUARDIAN] OR [JOIN TRIGGER]" },
-      { "DisplayName": "Make Name KKK", "Type": "buttonthingy", "AssociatedString": "Make Name KKK" },
+      { "DisplayName": "Make Name KKK [DISABLED]", "Type": "buttonthingy", "AssociatedString": "Make Name KKK" },
       { "DisplayName": "Particle Spam", "Type": "togglethingy", "AssociatedBool": "particlespam", "Extra": "[M] [GR]" },
       { "DisplayName": "VC Mute Evade", "Type": "buttonthingy", "AssociatedString": "VC Mute Evade" },
       { "DisplayName": "Back", "Type": "submenuthingy", "AssociatedString": "backthingy" }

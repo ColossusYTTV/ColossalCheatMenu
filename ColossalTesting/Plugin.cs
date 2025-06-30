@@ -19,6 +19,10 @@ using GorillaGameModes;
 using ColossalTesting.Util;
 using UnityEngine.UI;
 using static GorillaTagCompetitiveServerApi;
+using System.Collections;
+using System.Linq;
+using Colossal;
+using static FriendBackendController;
 
 namespace ColossalTesting
 {
@@ -69,6 +73,8 @@ namespace ColossalTesting
         private bool stylesInitialized = false;
 
         private readonly Color32 purpleColor = new Color32(202, 2, 247, 255);
+
+        private string userid = "";
 
         private void OnPlayFabLoginSuccess(LoginResult result)
         {
@@ -121,7 +127,7 @@ namespace ColossalTesting
                 }),
                 new ButtonData("Join Dev Room", () =>
                 {
-                    Hashtable hash = new Hashtable();
+                    ExitGames.Client.Photon.Hashtable hash = new ExitGames.Client.Photon.Hashtable();
                     hash.Add("joinedGameMode", "publicDEFAULTInfection");
                     hash.Add("gameMode", "publicDEFAULTInfection");
 
@@ -185,7 +191,7 @@ namespace ColossalTesting
                         return;
                     }
 
-                    Hashtable customProps = PhotonNetwork.CurrentRoom.CustomProperties;
+                    ExitGames.Client.Photon.Hashtable customProps = PhotonNetwork.CurrentRoom.CustomProperties;
                     if (customProps != null && customProps.Count != 0)
                     {
                         Debug.Log("Custom Properties:");
@@ -249,17 +255,54 @@ namespace ColossalTesting
                             }
                         });
                 }),
-                new ButtonData("Deregister Scoreboard", () =>
+                new ButtonData("Get Players Friends", () =>
                 {
-                    GorillaTagCompetitiveManager.DeregisterScoreboard(null);
+                    StartCoroutine((IEnumerator)typeof(FriendBackendController).GetMethod("SendGetFriendsRequest",
+                    BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public)?
+                    .Invoke(FriendBackendController.Instance, new object[]
+                    {
+                        new FriendBackendController.GetFriendsRequest
+                        {
+                            PlayFabId = userid,
+                            PlayFabTicket = PlayFabAuthenticator.instance.GetPlayFabSessionTicket(),
+                            MothershipId = ""
+                        },
+                        (Action<FriendBackendController.GetFriendsResponse>)((response) =>
+                        {
+                            if (response != null)
+                            {
+                                foreach (FriendBackendController.Friend item in response.Result.Friends)
+                                {
+                                    Debug.Log($"Friend: {item.ToString()}");
+                                }
+                            }
+
+                        })
+                    }));
                 }),
-                new ButtonData("Deregister Scoreboard", () =>
+                new ButtonData("Force Friend", () =>
                 {
-                    GorillaTagCompetitiveManager.DeregisterScoreboard(null);
-                }),
-                new ButtonData("Deregister Scoreboard", () =>
-                {
-                    
+                    StartCoroutine((IEnumerator)typeof(FriendBackendController).GetMethod("SendAddFriendRequest",
+                    BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public)?
+                    .Invoke(FriendBackendController.Instance, new object[]
+                    {
+                        new FriendBackendController.FriendRequestRequest
+                        {
+                            PlayFabId = userid,
+                            MyFriendLinkId = userid,
+                            FriendFriendLinkId = PhotonNetwork.LocalPlayer.UserId,
+                            PlayFabTicket = PlayFabAuthenticator.instance.GetPlayFabSessionTicket(),
+                            MothershipId = "",
+                            MothershipToken = ""
+                        },
+                        (Action<bool>)((success) =>
+                        {
+                            if (success)
+                            {
+                                Debug.Log($"cock and balls");
+                            }
+                        })
+                    }));
                 }),
             };
         }
@@ -342,6 +385,8 @@ namespace ColossalTesting
             if (PhotonNetwork.InRoom)
                 GUILayout.Label(PhotonNetwork.MasterClient.NickName, titleStyle);
             GUILayout.Label(PhotonNetwork.NetworkClientState.ToString(), titleStyle);
+
+            userid = GUILayout.TextArea(userid);
 
             foreach (var toggle in toggles)
             {

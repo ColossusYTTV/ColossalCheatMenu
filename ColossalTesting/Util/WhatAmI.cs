@@ -6,6 +6,8 @@ using Photon.Pun;
 using UnityEngine;
 using Viveport;
 using Photon.Pun.Demo.PunBasics;
+using System.Reflection;
+using GorillaNetworking;
 
 namespace Colossal
 {
@@ -98,11 +100,21 @@ namespace Colossal
             return (NetworkView)Traverse.Create(p).Field("netView").GetValue();
         }
 
-        public static void OculusCheck()
+        public static string GetMothershipId()
         {
-            string[] oculusDlls = Directory.GetFiles(Environment.CurrentDirectory, "OculusXRPlugin.dll", SearchOption.AllDirectories);
-            if (oculusDlls.Length > 0)
-                oculus = true;
+            // Attempt to get the MothershipId from MothershipClientContext
+            var mothershipIdProperty = typeof(PlayFabAuthenticator.PlayfabAuthRequestData).GetProperty("MothershipToken", BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic);
+            if (mothershipIdProperty != null)
+            {
+                string mothershipId = mothershipIdProperty.GetValue(null) as string;
+                if (mothershipId != null)
+                {
+                    Debug.Log("Retrieved MothershipId via reflection: " + mothershipId);
+                    return mothershipId;
+                }
+            }
+            Debug.LogWarning("MothershipId not found via reflection.");
+            return null;
         }
     }
 }
